@@ -22,17 +22,17 @@ a:link {
   
   /* visited link */
 a:visited {
-    color: #555555;
+    color: #666666;
   }
   
   /* mouse over link */
 a:hover {
-    color: #555555;
+    color: #777777;
   }
   
   /* selected link */
 a:active {
-    color: #555555;
+    color: #777777;
   }
 
 table {background-color: rgba(256,256,256,0.15);
