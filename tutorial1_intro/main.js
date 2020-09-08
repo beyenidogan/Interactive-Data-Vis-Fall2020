@@ -48,7 +48,8 @@ d3.csv("../data/BooksRead.csv").then(data=> {
         .data(d => Object.values(d))
         .join('td')
         .text(d => d)
-    
+        
+    //format rows
     rows
         .attr("class", function(d) {        
             if (d.Books <= 5) {return "low"}  
