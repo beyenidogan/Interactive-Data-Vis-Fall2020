@@ -60,8 +60,8 @@ d3.csv("../data/BooksRead.csv").then(data=> {
     //format rows
     rows
         .attr("class", function(d,i) {        
-            if (d.Books >= Math.round(avgBooks) || d.Pages >= Math.round(avgPages)) {return "high"}  
-            else if (d.Books <= Math.round(avgBooks) || d.Pages <= Math.round(avgPages)) {return "low"} 
+            if (d.Books >= Math.round(avgBooks) || d.Pages >= Math.round(avgPages)) {return "high"} 
+            else {return "low"} 
             //else { return null }             
         ;}) 
 
@@ -75,5 +75,4 @@ d3.csv("../data/BooksRead.csv").then(data=> {
     if (d.Books>8) {return "wow"};
     })) */
  
-
 });

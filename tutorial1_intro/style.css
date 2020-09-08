@@ -15,6 +15,26 @@ body {
     margin: 30px;
     }
 
+/* unvisited link */
+a:link {
+    color: #555555;
+  }
+  
+  /* visited link */
+a:visited {
+    color: #555555;
+  }
+  
+  /* mouse over link */
+a:hover {
+    color: #555555;
+  }
+  
+  /* selected link */
+a:active {
+    color: #555555;
+  }
+
 table {background-color: rgba(256,256,256,0.15);
     color:  #555555;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -49,6 +69,6 @@ tbody>tr:nth-last-child(-n+1) {
     }  
 tr.high {
     /* background-color: rgba(126, 211, 237, 0.5); */
-    background-image: linear-gradient(to right, rgba(216, 234, 240, 0.5),rgba(126, 211, 237, 0.5));   
+    background-image: linear-gradient(to right, rgba(216, 234, 240, 0.5),#7ed3ed80);   
 }
 
