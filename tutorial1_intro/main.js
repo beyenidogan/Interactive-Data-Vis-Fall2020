@@ -19,11 +19,11 @@ d3.csv("../data/BooksRead.csv").then(data=> {
         return (prev + cur.Pages);
         }, 0); 
     
-    var avgBooks=totalBooks/data.length
+    var avgBooks=Math.round(totalBooks/data.length)
 
     console.log(avgBooks) 
 
-    var avgPages=totalPages/data.length
+    var avgPages=Math.round(totalPages/data.length)
 
     console.log(avgPages) 
 
@@ -60,7 +60,7 @@ d3.csv("../data/BooksRead.csv").then(data=> {
     //format rows
     rows
         .attr("class", function(d,i) {        
-            if (d.Books >= Math.round(avgBooks) || d.Pages >= Math.round(avgPages)) {return "high"} 
+            if (d.Books >= avgBooks || d.Pages >= avgPages) {return "high"} 
             else {return "low"} 
             //else { return null }             
         ;}) 
