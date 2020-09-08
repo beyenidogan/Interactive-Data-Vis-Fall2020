@@ -48,9 +48,13 @@ d3.csv("../data/BooksRead.csv").then(data=> {
         .data(d => Object.values(d))
         .join('td')
         .text(d => d)
-        .attr("color",function(d){
-            td => td > 8  ? "wow" : null;
-        });
+    
+    rows
+        .attr("class", function(d) {        
+            if (d.Books <= 5) {return "low"}  
+            else if (d.Books >= 5 ) {return "high"} 
+            else { return null }             
+        ;}) 
 
 // Attempts to update rows       
 /* thead

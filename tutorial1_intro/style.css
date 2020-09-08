@@ -44,6 +44,8 @@ tbody>tr:last-child {
     font-size: 95%;
     background-color:rgba(256,256,256,0.4); 
     }  
-.wow {
-    background-color:"yellow";   
+tr.high {
+    /* background-color: rgba(126, 211, 237, 0.5); */
+    background-image: linear-gradient(to right, rgba(216, 234, 240, 0.5),rgba(126, 211, 237, 0.5));   
 }
+
