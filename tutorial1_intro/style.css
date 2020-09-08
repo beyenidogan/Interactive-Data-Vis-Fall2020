@@ -25,13 +25,13 @@ table {background-color: rgba(256,256,256,0.15);
     text-align: center;
     }
 th,td {
-    padding: 5px 10px 3px 10px;
+    padding: 5px 25px 4px 25px;
     }
 th {
     font-size: 95%;
     background-color:rgba(256,256,256,0.4);
     border-top: 1px solid #eeeeee;
-    border-bottom:2px solid #dddddd;
+    border-bottom:1px solid #eeeeee;
     text-transform: uppercase;
     }
 
@@ -43,3 +43,6 @@ tbody>tr:last-child {
     font-weight: bold;
     background-color:rgba(256,256,256,0.4); 
     }  
+.wow {
+    background-color:"yellow";   
+}

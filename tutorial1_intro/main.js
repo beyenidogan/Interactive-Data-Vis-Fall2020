@@ -4,18 +4,28 @@ d3.csv("../data/BooksRead.csv").then(data=> {
 
     data.forEach(function(d){
         d.Books= +d.Books;
+        d.Pages= +d.Pages;
           });
     
-    console.log(data[0]);
-    
-    var totalBooks = data.reduce(function(prev, cur){
+    console.log(data[0]);   //check if is number
+
+    // add the number of books
+    var totalBooks = data.reduce(function(prev, cur){     
         return (prev + cur.Books);
         }, 0); 
+    console.log(totalBooks) 
 
-    data.push(["TOTAL","","",totalBooks]); 
+    var totalPages = data.reduce(function(prev, cur){     
+        return (prev + cur.Pages);
+        }, 0); 
+
+    //insert total to array
+    data.push(["TOTAL","",totalPages,totalBooks]); 
 
     console.log("data",data)
+
     
+    //append table
     const table= d3.select("#d3-table");
     
     const thead = table.append('thead');
@@ -37,16 +47,16 @@ d3.csv("../data/BooksRead.csv").then(data=> {
         .selectAll('td')
         .data(d => Object.values(d))
         .join('td')
-        .text(d => d) ;
-        
-//NOT WORKING....   
-    rows
-        .selectAll('tr')   
-        .data(data)
-        .attr("class",forEach(function(d){
-            if (d[3]>4) {return "wow"};
-              }))
+        .text(d => d)
 
-    console.log(totalBooks) 
+// Attempts to update rows       
+/* thead
+        .append('tr')
+        .selectAll('td')
+        .attr("class",td => td > 8  ? "wow" : null); */
+
+/* .attr("class",data.forEach(function(d){
+    if (d.Books>8) {return "wow"};
+    })) */
 
 }); 
