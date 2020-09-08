@@ -2,7 +2,7 @@ header, section, footer, aside, nav, article, figure, figcaption {
     display: block;}
 
 body {
-    color: #555555;
+    color: #444444;
     background-color: #f9f8f6;
     height: 600px; 
     background-image: url("../lib/assets/BooksImage.jpeg");
@@ -16,8 +16,8 @@ body {
     }
 
 table {background-color: rgba(256,256,256,0.15);
-    color: rgb(100,100,90);
-    font-family: Arial, Helvetica, sans-serif;
+    color:  #555555;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 14px;
     padding: 15px;
     margin: 20px;
@@ -41,6 +41,7 @@ tr:nth-child(even){
 
 tbody>tr:last-child {
     font-weight: bold;
+    font-size: 95%;
     background-color:rgba(256,256,256,0.4); 
     }  
 .wow {
