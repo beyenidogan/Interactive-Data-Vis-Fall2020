@@ -36,12 +36,15 @@ th {
     }
 
 tr:nth-child(even){
-    background-color: rgba(256,256,256,0.2);
+    background-color: rgba(256,256,256,0.18);
     }
 
-tbody>tr:last-child {
+tbody>tr:nth-last-child(-n+2) {
     font-weight: bold;
     font-size: 95%;
+    background-color:rgba(256,256,256,0.3); 
+    }  
+tbody>tr:nth-last-child(-n+1) {
     background-color:rgba(256,256,256,0.4); 
     }  
 tr.high {

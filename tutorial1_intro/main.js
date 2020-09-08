@@ -18,9 +18,17 @@ d3.csv("../data/BooksRead.csv").then(data=> {
     var totalPages = data.reduce(function(prev, cur){     
         return (prev + cur.Pages);
         }, 0); 
+    
+    var avgBooks=totalBooks/data.length
+
+    console.log(avgBooks) 
+
+    var avgPages=totalPages/data.length
+
+    console.log(avgPages) 
 
     //insert total to array
-    data.push(["TOTAL","",totalPages,totalBooks]); 
+    data.push(["TOTAL","",totalPages,totalBooks],["AVERAGE","",avgPages,avgBooks] ); 
 
     console.log("data",data)
 
@@ -51,10 +59,10 @@ d3.csv("../data/BooksRead.csv").then(data=> {
         
     //format rows
     rows
-        .attr("class", function(d) {        
-            if (d.Books <= 5) {return "low"}  
-            else if (d.Books >= 5 ) {return "high"} 
-            else { return null }             
+        .attr("class", function(d,i) {        
+            if (d.Books >= Math.round(avgBooks) || d.Pages >= Math.round(avgPages)) {return "high"}  
+            else if (d.Books <= Math.round(avgBooks) || d.Pages <= Math.round(avgPages)) {return "low"} 
+            //else { return null }             
         ;}) 
 
 // Attempts to update rows       
