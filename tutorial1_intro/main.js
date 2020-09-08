@@ -1,41 +1,52 @@
 d3.csv("../data/BooksRead.csv").then(data=> {
     
+    //Normally in an object, all fields are loaded as string, change to numbers by using forEach
+
+    data.forEach(function(d){
+        d.Books= +d.Books;
+          });
+    
+    console.log(data[0]);
+    
+    var totalBooks = data.reduce(function(prev, cur){
+        return (prev + cur.Books);
+        }, 0); 
+
+    data.push(["TOTAL","","",totalBooks]); 
+
     console.log("data",data)
     
     const table= d3.select("#d3-table");
-    const columns = ["Year", "Month", "Number of Pages", "Read Count"]
     
-    const column_headers=table
-        .selectAll("th")
+    const thead = table.append('thead');
+
+    thead
+        .append('tr')
+        .selectAll('th')
         .data(data.columns)
-        .join("th")
-        .text(function (d) { return d })
-    
-    const body = table.append('tbody')
+        .join('th')
+        .text(d => d)
 
-    const rows = body.selectAll(".row")
+    const rows = table
+        .append('tbody')
+        .selectAll('tr')
         .data(data)
-        .join('tr')
-        .attr('class', 'row')
- 
-    const cells = rows.selectAll('td')
-        .data(function(row) {
-            return columns.map(function (column) {
-                return { column: column, value: row[column] }
-                })
-            })
+        .join('tr');
+
+    rows
+        .selectAll('td')
+        .data(d => Object.values(d))
         .join('td')
-        .text(function (d) { return d.value })
-        .style("color", data.map(function (d) { 
-            if(parseInt(d[3])>5)
-                {return "red"}
-            else {}
-            }))
+        .text(d => d) ;
+        
+//NOT WORKING....   
+    rows
+        .selectAll('tr')   
+        .data(data)
+        .attr("class",forEach(function(d){
+            if (d[3]>4) {return "wow"};
+              }))
+
+    console.log(totalBooks) 
+
 }); 
-
-
-/* .style("color", data.map(function (d) { 
-    if(parseInt(d[3])>5)
-        {return "red"}
-    else {}
-    })) */
