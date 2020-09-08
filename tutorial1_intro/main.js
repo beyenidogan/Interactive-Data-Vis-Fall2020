@@ -26,6 +26,16 @@ d3.csv("../data/BooksRead.csv").then(data=> {
             })
         .join('td')
         .text(function (d) { return d.value })
-        .attr("class", d=> + d["Number of Pages"] >5 ? "high" :null)
+        .style("color", data.map(function (d) { 
+            if(parseInt(d[3])>5)
+                {return "red"}
+            else {}
+            }))
+}); 
 
-});
+
+/* .style("color", data.map(function (d) { 
+    if(parseInt(d[3])>5)
+        {return "red"}
+    else {}
+    })) */
