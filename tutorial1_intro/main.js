@@ -28,7 +28,7 @@ d3.csv("../data/BooksRead.csv").then(data=> {
     console.log(avgPages) 
 
     //insert total to array
-    data.push(["TOTAL","",totalPages,totalBooks],["AVERAGE","",avgPages,avgBooks] ); 
+    data.push(["Total","",totalPages,totalBooks],["Average","",avgPages,avgBooks] ); 
 
     console.log("data",data)
 
