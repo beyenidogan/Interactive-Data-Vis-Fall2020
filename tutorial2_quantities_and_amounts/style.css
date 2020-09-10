@@ -63,8 +63,8 @@ th {
     text-transform: uppercase;
     }
 
-tr:nth-child(even){
-    background-color: rgba(256,256,256,0.18);
+ tr:nth-child(even){
+    background-color: rgba(256,256,256,0.13);
     }
 
 tbody>tr:nth-last-child(-n+2) {
@@ -76,7 +76,6 @@ tbody>tr:nth-last-child(-n+1) {
     background-color:rgba(256,256,256,0.4); 
     }  
 tr.high {
-    /* background-color: rgba(126, 211, 237, 0.5); */
-    background-image: linear-gradient(to right, rgba(216, 234, 240, 0.5),#7ed3ed80);   
-}
-
+        /* background-color: rgba(126, 211, 237, 0.5); */
+        background-image: linear-gradient(to right, rgba(216, 234, 240, 0.5),rgba(126, 211, 237, 0.6));    
+    }
