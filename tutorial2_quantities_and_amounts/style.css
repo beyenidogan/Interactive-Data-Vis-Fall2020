@@ -1,14 +1,14 @@
 header, section, footer, aside, nav, article, figure, figcaption {
-    display: flex;}
+    background-image: linear-gradient(to right, #BBBAB8,#C6C6C4);}
 
 body {
     color: #444444;
-    background-color: #f9f8f6;
+    background-color: #BBBAB8;
     height: 600px; 
     background-image: url("../lib/assets/BooksImage.jpeg");
     background-repeat: no-repeat;
     background-size: cover; 
-    background-position: center;
+    background-position: right;
     padding: 20px 20px 20px 0px;
     font-family: Georgia, Times, serif;
     font-size: 20px;
@@ -16,7 +16,8 @@ body {
     }
 
 .container {
-    display:flex;}
+    display:flex;
+}
 
 
 /* .chart {
@@ -25,12 +26,14 @@ body {
 } */
 .chart {
     margin: 20px 0px 20px 0px;
-    padding: 46px 20px 20px 0px;
-    width: 150px;
-    background-color: rgba(256,256,256,0.15);
+    padding: 26px 20px 20px 0px;
+    width: 110px;
+    background-image: linear-gradient(to right, rgba(207, 207, 206,1),rgba(207, 207, 206,0.5));
 }
 svg.booksBar {
     size:inherit;
+    margin:20px 0px 0px 10px;
+    background-color: rgba(256,256,256,0.13);
 }
 /* unvisited link */
 a:link {
@@ -52,14 +55,14 @@ a:active {
     color: #777777;
   }
 
-table {background-color: rgba(256,256,256,0.15);
+table {background-color: #CFCFCE;
     color:  #555555;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
     font-size: 13px;
     height:650;
     justify-content:flex-end;
-    padding: 20px 20px 20px 20px;
-    margin: 20px;
+    padding: 20px 0px 20px 20px;
+    margin: 20px 0px 20px 20px;
     border-spacing: 2px 0;
     text-align: center;
     }

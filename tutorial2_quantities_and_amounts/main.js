@@ -68,14 +68,17 @@ const svg=d3.select(".booksBar")
 
     const xScale=d3.scaleLinear()                                                   
         .domain([0,d3.max(data.map(d=>d.Books))])
-        .range([0,w]);
+        .range([0,(w*0.9)]);
 
     const yScale=d3.scaleBand()
         .domain(data.map(d=>d.Month))
         .range([0,h])
-                                                         
 
-//test SVG
+    const xColor = d3.scaleLinear()
+        .domain([0,d3.max(data.map(d=>d.Books))])
+        .range(["rgb(256,256,256)", "rgb(126, 211, 237)"])
+    
+        
     const bars=svg.selectAll('rect.bar')
         .data(data)
         .join('rect')
@@ -84,19 +87,8 @@ const svg=d3.select(".booksBar")
         .attr('width',d=>xScale(d.Books))
         .attr("y",d=>yScale(d.Month))
         .attr("x",0)
-        .style("fill","rgb(126, 211, 237)")
+        .style("fill","(d=>xColor(d.Books))")
 
     
-/*     svg.selectAll("text")
-    .data(dataset3)
-    .join("text")
-    .text(function(d) {
-    return d[0] + "," + d[1];
-    })
-    .attr("x",function(d){return xScale(d[0]);})                       
-    .attr("y",function(d){return yScale(d[1]);})                                 
-    .attr("font-family","sans-serif")
-    .attr("font-size","11px")
-    .attr("fill","red");
-  */
+
 });
