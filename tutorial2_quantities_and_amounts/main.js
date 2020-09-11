@@ -1,7 +1,7 @@
 d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
     
     console.log(data);  
-
+    const data3=data
     // add the number of books & pages
     var totalBooks = data.reduce(function(prev, cur){     
         return (prev + cur.Books);
@@ -18,9 +18,14 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
     console.log(avgPages) 
 
     //insert total to array
-    data.push(["Total","",totalPages,totalBooks],["Average","",avgPages,avgBooks] ); 
+    const data2= data
+    data2.push(["Total","",totalPages,totalBooks],["Average","",avgPages,avgBooks] ); 
 
-    console.log("data",data)
+    console.log("data3",data3);
+
+    console.log(data2.columns)
+
+    console.log("data2",data2);
 
     //append table
     const table= d3.select('.booksTable');
@@ -29,14 +34,14 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
     thead
         .append('tr')
         .selectAll('th')
-        .data(data.columns)
+        .data(data2.columns)
         .join('th')
         .text(d => d)
 
     const rows = table
         .append('tbody')
         .selectAll('tr')
-        .data(data)
+        .data(data2)
         .join('tr');
 
     rows
@@ -53,32 +58,33 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
         });  
 
     let w=100;
-    let h=100;
-    let barPadding=2;
-    let Padding=5;      
+    let h=529+27-50;
+    let barPadding=1;
+    let Padding=3;      
 
-const svg=d3.select(".dbooksBar")
+const svg=d3.select(".booksBar")  
+    .attr("width",w)
+    .attr("height",h);
 
-
-    const xScale=d3.scaleLinear()                                                   //Scale functions
+    const xScale=d3.scaleLinear()                                                   
         .domain([0,d3.max(data.map(d=>d.Books))])
         .range([0,w]);
-    console.log(xScale(12))
 
-    
     const yScale=d3.scaleBand()
-        .domain([0,d3.max(data.map(d=>d.Month))])
-        .range([0,h]);                                                  //reversing the axis, because svg is generated from top
+        .domain(data.map(d=>d.Month))
+        .range([0,h])
+                                                         
 
-const bars=svg.selectAll('rect.bar')
-    .data(data)
-    .join('rect')
-    .attr('class','bar')
-    .attr('height',d=>yScale.bandwith())
-    .attr('width',d=>xScale(d.Books))
-    .attr("y",d=>yScale(d.Month))
-    .attr("x",0)
-    .style("fill","pink")
+//test SVG
+    const bars=svg.selectAll('rect.bar')
+        .data(data)
+        .join('rect')
+        .attr('class','bar')
+        .attr('height',20)
+        .attr('width',d=>xScale(d.Books))
+        .attr("y",d=>yScale(d.Month))
+        .attr("x",0)
+        .style("fill","rgb(126, 211, 237)")
 
     
 /*     svg.selectAll("text")
@@ -87,8 +93,8 @@ const bars=svg.selectAll('rect.bar')
     .text(function(d) {
     return d[0] + "," + d[1];
     })
-    .attr("x",function(d){return xScale(d[0]);})                        //first element of array but scaled with scale functions
-    .attr("y",function(d){return yScale(d[1]);})                     //second element of array but scaled with scale functions                     
+    .attr("x",function(d){return xScale(d[0]);})                       
+    .attr("y",function(d){return yScale(d[1]);})                                 
     .attr("font-family","sans-serif")
     .attr("font-size","11px")
     .attr("fill","red");

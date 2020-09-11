@@ -1,5 +1,5 @@
 header, section, footer, aside, nav, article, figure, figcaption {
-    display: block;}
+    display: flex;}
 
 body {
     color: #444444;
@@ -9,20 +9,29 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
     background-position: center;
-    padding: 20px;
+    padding: 20px 20px 20px 0px;
     font-family: Georgia, Times, serif;
     font-size: 20px;
     margin: 30px;
     }
 
 .container {
-    display: inline;}
+    display:flex;}
 
-.chart {
+
+/* .chart {
  
     display:inline;
+} */
+.chart {
+    margin: 20px 0px 20px 0px;
+    padding: 46px 20px 20px 0px;
+    width: 150px;
+    background-color: rgba(256,256,256,0.15);
 }
-
+svg.booksBar {
+    size:inherit;
+}
 /* unvisited link */
 a:link {
     color: #555555;
@@ -46,14 +55,16 @@ a:active {
 table {background-color: rgba(256,256,256,0.15);
     color:  #555555;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    font-size: 14px;
-    padding: 15px;
+    font-size: 13px;
+    height:650;
+    justify-content:flex-end;
+    padding: 20px 20px 20px 20px;
     margin: 20px;
     border-spacing: 2px 0;
     text-align: center;
     }
 th,td {
-    padding: 5px 25px 4px 25px;
+    padding: 4px 25px 4px 25px;
     }
 th {
     font-size: 95%;
