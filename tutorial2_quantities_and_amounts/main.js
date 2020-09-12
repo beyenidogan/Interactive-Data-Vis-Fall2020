@@ -69,23 +69,29 @@ const svg=d3.select(".booksBar")
         .domain([0,d3.max(data.map(d=>d.Books))])
         .range([0,(w*0.85)]);
 
-    const yScale=d3.scaleBand()
+/*     const yScale=d3.scaleBand()
         .domain(data.map(d=>d.Month))
-        .range([25,h+28])
+        .range([25,h+28]) */
+
+//To fix the problem related to repeating month values       
+    const yScale=d3.scaleBand()                                                   
+        .domain(d3.range(data.length))
+        .rangeRound([0,h+28])                    //enables rounding to make the pixel values whole, thus crisper look (same as .range([0,w]).round(true))
+        .paddingInner(0.05)
 
     const xColor = d3.scaleLinear()
         .domain([0,d3.max(data.map(d=>d.Books))])
         .range(["rgb(256,256,256)", "rgb(126, 211, 237)"])
 
     console.log(xColor(11))
-        
+ 
     const bars=svg.selectAll('rect.bar')
         .data(data)
         .join('rect')
         .attr('class','bar')
         .attr('height',20)
         .attr('width',d=>xScale(d.Books))
-        .attr("y",d=>yScale(d.Month))
+        .attr("y",(d,i)=>yScale(i))
         .attr("x",0)
         .attr("fill",d=>xColor(d.Books))
 
