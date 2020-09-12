@@ -49,16 +49,15 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
         .data(d => Object.values(d))
         .join('td')
         .text(d => d)
-        
-    //format rows
     rows
         .attr("class", function(d,i) {        
             if (d.Books >= avgBooks || d.Pages >= avgPages) {return "high"} 
             else {return "low"} 
-        });  
+            //else { return null }             
+        ;}) 
 
     let w=100;
-    let h=529+27-50;
+    let h=553;
     let barPadding=1;
     let Padding=3;      
 
@@ -68,16 +67,17 @@ const svg=d3.select(".booksBar")
 
     const xScale=d3.scaleLinear()                                                   
         .domain([0,d3.max(data.map(d=>d.Books))])
-        .range([0,(w*0.9)]);
+        .range([0,(w*0.85)]);
 
     const yScale=d3.scaleBand()
         .domain(data.map(d=>d.Month))
-        .range([0,h])
+        .range([25,h+28])
 
     const xColor = d3.scaleLinear()
         .domain([0,d3.max(data.map(d=>d.Books))])
         .range(["rgb(256,256,256)", "rgb(126, 211, 237)"])
-    
+
+    console.log(xColor(11))
         
     const bars=svg.selectAll('rect.bar')
         .data(data)
@@ -87,8 +87,7 @@ const svg=d3.select(".booksBar")
         .attr('width',d=>xScale(d.Books))
         .attr("y",d=>yScale(d.Month))
         .attr("x",0)
-        .style("fill","(d=>xColor(d.Books))")
+        .attr("fill",d=>xColor(d.Books))
 
-    
 
 });
