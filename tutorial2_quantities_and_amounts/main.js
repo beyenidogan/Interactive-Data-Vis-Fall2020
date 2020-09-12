@@ -58,8 +58,6 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
 
     let w=100;
     let h=553;
-    let barPadding=1;
-    let Padding=3;      
 
 const svg=d3.select(".booksBar")  
     .attr("width",w)
@@ -76,8 +74,8 @@ const svg=d3.select(".booksBar")
 //To fix the problem related to repeating month values       
     const yScale=d3.scaleBand()                                                   
         .domain(d3.range(data.length))
-        .rangeRound([0,h+28])                    //enables rounding to make the pixel values whole, thus crisper look (same as .range([0,w]).round(true))
-        .paddingInner(0.05)
+        .rangeRound([0,h+24])                    //enables rounding to make the pixel values whole, thus crisper look (same as .range([0,w]).round(true))
+        .paddingInner(0.08)
 
     const xColor = d3.scaleLinear()
         .domain([0,d3.max(data.map(d=>d.Books))])
@@ -89,7 +87,7 @@ const svg=d3.select(".booksBar")
         .data(data)
         .join('rect')
         .attr('class','bar')
-        .attr('height',20)
+        .attr('height',yScale.bandwidth())
         .attr('width',d=>xScale(d.Books))
         .attr("y",(d,i)=>yScale(i))
         .attr("x",0)
