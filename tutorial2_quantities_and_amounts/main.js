@@ -91,7 +91,6 @@ const svg=d3.select(".booksBar")
         .attr('width',d=>xScale(d.Books))
         .attr("y",(d,i)=>yScale(i))
         .attr("x",0)
-        .attr("fill",d=>xColor(d.Books))
-
+        .attr("fill",d=>xColor(d.Books)) 
 
 });
