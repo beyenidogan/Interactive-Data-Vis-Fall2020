@@ -22,7 +22,8 @@ body {
     margin: 20px 0px 20px 20px;
     border-spacing: 2px 0;
     height:400;
-    background-color: #CFCFCE;
+    max-width: 510px;
+/*     background-color: #CFCFCE; */
     background-image: linear-gradient(to right, rgba(207, 207, 206,1),rgba(207, 207, 206,0.5));
 }
 
@@ -31,15 +32,15 @@ body {
     display:inline;
 } */
 .chart {
-    margin: 20px 0px 0px 0px;
-    padding: 7px 20px 0px 0px;
+    margin: 20px 0px 20px 0px;
+    padding: 7px 20px 20px 0px;
     width: 110px;
-    ;
 }
 svg.booksBar {
     size:inherit;
     margin:0px 0px 0px 10px;
     background-color: rgba(256,256,256,0.13);
+    max-height:528px;
 }
 /* unvisited link */
 a:link {
