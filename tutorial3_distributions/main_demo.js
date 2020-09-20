@@ -1,7 +1,7 @@
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.7,
-  margin = { top: 20, bottom: 50, left: 100, right: 40 },
+  height = window.innerHeight * 0.9,
+  margin = { top: 20, bottom: 50, left: 60, right: 40 },
   radius = 5;
 
   console.log('width',width)
@@ -15,15 +15,11 @@ let yScale;
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectedCategory: "Show All" ,// + YOUR FILTER SELECTION
-  selectedQuestion: "Show All" ,// + YOUR FILTER SELECTION
-  selectedRatingLevel: "Show All" // + YOUR FILTER SELECTION
-  
+  selectedParty: "All" // + YOUR FILTER SELECTION
 };
-console.log(state)
 
 /* LOAD DATA */
-d3.csv("../data/WEF_COVID_19_Risks_Outlook.csv", d3.autoType).then(raw_data => {
+d3.json("../data/environmentRatings.json", d3.autoType).then(raw_data => {
   // + SET YOUR DATA PATH
   console.log("raw_data", raw_data);
   state.data = raw_data; 
@@ -36,71 +32,42 @@ d3.csv("../data/WEF_COVID_19_Risks_Outlook.csv", d3.autoType).then(raw_data => {
 function init() {
   // + SCALES
   xScale=d3.scaleLinear()
-    .domain(d3.extent(state.data, d => d.Risk_Rating))
+    .domain(d3.extent(state.data, d => d.ideology_rating))
     .range([margin.left, width-margin.right])
 
-  yScale=d3.scaleBand()
+  yScale=d3.scaleLinear()
 //    .domain([0,100])
-    .domain(d3.extent(state.data, d => d.Risk_Name))
+    .domain(d3.extent(state.data, d => d.environmental_rating))
     .range([height-margin.bottom,margin.top])
 
   // + AXES
 
 const xAxis=d3.axisBottom(xScale)
-.ticks(10)
+.ticks(5)
 
 const yAxis=d3.axisLeft(yScale)
-
+.ticks(5);
 
 
   // + UI ELEMENT SETUP
 
-  const selectCategory = d3.select("#dropdown1").on("change", function() {
+  const selectElement = d3.select("#dropdown").on("change", function() {
     // `this` === the selectElement
     // 'this.value' holds the dropdown value a user just selected
 
-    state.selectedCategory = this.value;
+    state.selectedParty = this.value;
     console.log("new value is", this.value);
     draw(); // re-draw the graph based on this new selection
   });
-
-  const selectQuestion = d3.select("#dropdown2").on("change", function() {
-    // `this` === the selectElement
-    // 'this.value' holds the dropdown value a user just selected
-
-    state.selectedQuestion = this.value;
-    console.log("new value is", this.value);
-    draw(); // re-draw the graph based on this new selection
-  });
-
-const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
-  // `this` === the selectElement
-  // 'this.value' holds the dropdown value a user just selected
-
-  state.selectedRatingLevel = this.value;
-  console.log("new value is", this.value);
-  draw(); // re-draw the graph based on this new selection
-});
 
   // add in dropdown options from the unique values in the data
-  selectCategory
+  selectElement
     .selectAll("option")
-    .data(["Show All","Economic","Environmental","Geopolitical","Societal","Technology"]) // + ADD UNIQUE VALUES
+    .data(["All", "D", "R", "I"]) // + ADD UNIQUE VALUES
     .join("option")
     .attr("value", d => d)
     .text(d => d);
-  selectQuestion
-    .selectAll("option")
-    .data(["Show All","Greatest concern for the world","Most likely fallout for the world","Most worrisome for your company"]) // + ADD UNIQUE VALUES
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d);
-  selectRatingLevel 
-    .selectAll("option")
-    .data(["Show All", "High", "Medium", "Low"]) // + ADD UNIQUE VALUES
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d); 
+
   // + CREATE SVG ELEMENT
 
   svg=d3.select("#d3-container")
@@ -110,7 +77,15 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
 
   // + CALL AXES
 
+/*   svg.append("g")
+  .attr("class","x-axis")
+  .attr("transform","translate(0,"+(width)+")")
+  .call(xAxis);   
 
+  svg.append("g")
+  .attr("class","y-axis")
+  .attr("transform","translate("+(height)+",0)")
+  .call(yAxis); */
   svg
   .append("g")
   .attr("class", "axis x-axis")
@@ -143,41 +118,17 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
 
 function draw() {
   
-  // + FILTER DATA BASED ON CATEGORY
-/*   let filteredCategory = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedCategory !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedCategory);
-  }
-  let filteredQuestion = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedQuestion !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedQuestion);
-  }
-  let filteredRatingLevel = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedRatingLevel !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedRatingLevel );
-  } */
-
+  // + FILTER DATA BASED ON STATE
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedCategory !== "Show All") {
-    filteredData = state.data.filter(d => d.Category === state.selectedCategory);
-  }
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedQuestion !== "Show All") {
-    filteredData = state.data.filter(d => d.Question === state.selectedQuestion);
-  }
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedRatingLevel !== "Show All") {
-    filteredData = state.data.filter(d => d.Rating_Level === state.selectedRatingLevel );
+  if (state.selectedParty !== "All") {
+    filteredData = state.data.filter(d => d.party === state.selectedParty);
   }
 
-  console.log(filteredData)
+
 const dot = svg
    .selectAll("circle")
-   .data(filteredData, d => d.Risk_Name)
+   .data(filteredData, d => d.name)
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
