@@ -10,7 +10,7 @@ const width = window.innerWidth * 0.7,
 let svg;
 let xScale;
 let yScale;
-
+let colors;
 
 /* APPLICATION STATE */
 let state = {
@@ -44,14 +44,16 @@ function init() {
     .domain(d3.extent(state.data, d => d.Risk_Name))
     .range([height-margin.bottom,margin.top])
 
-  // + AXES
+colors = d3.scaleQuantize()
+    .domain(d3.extent(state.data, d => d.Category ))
+    .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598"]);
+  
+// + AXES
 
 const xAxis=d3.axisBottom(xScale)
 .ticks(10)
 
 const yAxis=d3.axisLeft(yScale)
-
-
 
   // + UI ELEMENT SETUP
 
@@ -120,7 +122,7 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
   .attr("class", "axis-label")
   .attr("x", "50%")
   .attr("dy", "3em")
-  .text("Ideology Rating");
+  .text("Risk Rating");
 
   svg
   .append("g")
@@ -132,7 +134,7 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
   .attr("y", "50%")
   .attr("dx", "-3em")
   .attr("writing-mode", "vertical-rl")
-  .text("Environmental Rating");
+  .text("Risk Name");
 
 
   draw(); // calls the draw function
@@ -143,26 +145,30 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
 
 function draw() {
   
-  // + FILTER DATA BASED ON CATEGORY
-/*   let filteredCategory = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedCategory !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedCategory);
-  }
-  let filteredQuestion = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedQuestion !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedQuestion);
-  }
-  let filteredRatingLevel = state.data;
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedRatingLevel !== "Show All") {
-    filteredCategory = state.data.filter(d => d.Category === state.selectedRatingLevel );
-  } */
+  // + FILTER DATA BASED ON CATEGORY, QUESTION, RATING LEVEL
 
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
   if (state.selectedCategory !== "Show All") {
+      if(state.selectedQuestion !== "Show All") {
+          if(state.selectedRatingLevel !== "Show All"){
+            filteredData = state.data.filter(d => d.Rating_Level === state.selectedRatingLevel);
+          }
+        filteredData = state.data.filter(d => d.Question === state.selectedQuestion);
+      }
+    filteredData = state.data.filter(d => d.Category === state.selectedCategory);
+    }
+      
+
+  //2 not filtering
+/*   if (state.selectedCategory !== "Show All") {
+    if( d.Category === state.selectedCategory || d.Question === state.selectedQuestion || d.Rating_Level === state.selectedRatingLevel)
+      { 
+        return d;
+      }} */
+
+ //1only filtering on one     
+/*   if (state.selectedCategory !== "Show All") {
     filteredData = state.data.filter(d => d.Category === state.selectedCategory);
   }
   // if there is a selectedParty, filter the data before mapping it to our elements
@@ -173,7 +179,7 @@ function draw() {
   if (state.selectedRatingLevel !== "Show All") {
     filteredData = state.data.filter(d => d.Rating_Level === state.selectedRatingLevel );
   }
-
+ */
   console.log(filteredData)
 const dot = svg
    .selectAll("circle")
@@ -186,20 +192,22 @@ const dot = svg
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
           .attr("stroke", "lightgrey")
           .attr("opacity", 0.5)
-          .attr("fill", d => {
+          .attr("fill", d=>colors(d.Category))
+/*           .attr("fill", d => {
             if (d.party === "D") return "blue";
             else if (d.party === "R") return "red";
+
             else return "purple";
-          })
+          }) */
           .attr("r", radius)
-          .attr("cy", d => yScale(d.environmental_rating))
+          .attr("cy", d => yScale(d.Risk_Name))
           .attr("cx", d => margin.left) // initial value - to be transitioned
           .call(enter =>
             enter
               .transition() // initialize transition
-              .delay(d => 500 * d.ideology_rating) // delay on each element
+              .delay(d => 500 * d.Risk_Rating) // delay on each element
               .duration(500) // duration 500ms
-              .attr("cx", d => xScale(d.ideology_rating))
+              .attr("cx", d => xScale(d.Risk_Rating))
           ),
       update =>
         update.call(update =>
@@ -217,7 +225,7 @@ const dot = svg
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
-            .delay(d => 50 * d.ideology_rating)
+            .delay(d => 50 * d.Risk_Rating)
             .duration(500)
             .attr("cx", width)
             .remove()
