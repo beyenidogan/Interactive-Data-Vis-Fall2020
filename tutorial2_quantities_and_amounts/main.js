@@ -56,6 +56,8 @@ d3.csv("../data/BooksRead.csv",d3.autoType).then(data=> {
             //else { return null }             
         ;}) 
 
+    // FEEDBACK: use a ternary instead: ((d.Books >= avgBooks || d.Pages >= avgPages) ? "high" : "low")
+
     let w=100;
     let h=553;
 
@@ -79,7 +81,9 @@ const svg=d3.select(".booksBar")
 
     const xColor = d3.scaleLinear()
         .domain([0,d3.max(data.map(d=>d.Books))])
+         // FEEDBACK: use d3.extent instead
         .range(["rgb(256,256,256)", "rgb(126, 211, 237)"])
+
 
     console.log(xColor(11))
  
