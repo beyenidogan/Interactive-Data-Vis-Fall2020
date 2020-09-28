@@ -1,7 +1,7 @@
 /* CONSTANTS AND GLOBALS */
-const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.7,
-  margin = { top: 20, bottom: 50, left: 100, right: 40 },
+const width = window.innerWidth * 0.9,
+  height = window.innerHeight * 0.9,
+  margin = { top: 20, bottom: 50, left: 400, right: 40 },
   radius = 5;
 
   console.log('width',width)
@@ -15,10 +15,7 @@ let colors;
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectedCategory: "Show All" ,// + YOUR FILTER SELECTION
   selectedQuestion: "Show All" ,// + YOUR FILTER SELECTION
-  selectedRatingLevel: "Show All" // + YOUR FILTER SELECTION
-  
 };
 console.log(state)
 
@@ -29,6 +26,7 @@ d3.csv("../data/WEF_COVID_19_Risks_Outlook.csv", d3.autoType).then(raw_data => {
   state.data = raw_data; 
   init();
 });
+
  console.log("margin left", margin.left)
  console.log("margin right",width-margin.right)
 /* INITIALIZING FUNCTION */
@@ -39,15 +37,19 @@ function init() {
     .domain(d3.extent(state.data, d => d.Risk_Rating))
     .range([margin.left, width-margin.right])
 
+  console.log("xScale - 20",d3.extent(xScale(20)))
+
   yScale=d3.scaleBand()
 //    .domain([0,100])
-    .domain(d3.extent(state.data, d => d.Risk_Name))
+    .domain(state.data.map(d => d.Risk_Name))
     .range([height-margin.bottom,margin.top])
 
-colors = d3.scaleQuantize()
-    .domain(d3.extent(state.data, d => d.Category ))
-    .range(["#5E4FA2", "#3288BD", "#66C2A5", "#ABDDA4", "#E6F598"]);
-  
+
+colors = d3.scaleOrdinal()
+    .domain(state.data.map(d => d.Risk_Level))
+    .range(["#3288BD", "#66C2A5", "#ABDDA4"]);
+
+    console.log("scaleOrdinal",colors("High"),colors("Medium"),colors("Low"))
 // + AXES
 
 const xAxis=d3.axisBottom(xScale)
@@ -85,24 +87,14 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
 });
 
   // add in dropdown options from the unique values in the data
-  selectCategory
-    .selectAll("option")
-    .data(["Show All","Economic","Environmental","Geopolitical","Societal","Technology"]) // + ADD UNIQUE VALUES
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d);
+
   selectQuestion
     .selectAll("option")
     .data(["Show All","Greatest concern for the world","Most likely fallout for the world","Most worrisome for your company"]) // + ADD UNIQUE VALUES
     .join("option")
     .attr("value", d => d)
     .text(d => d);
-  selectRatingLevel 
-    .selectAll("option")
-    .data(["Show All", "High", "Medium", "Low"]) // + ADD UNIQUE VALUES
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d); 
+
   // + CREATE SVG ELEMENT
 
   svg=d3.select("#d3-container")
@@ -111,7 +103,6 @@ const selectRatingLevel = d3.select("#dropdown3").on("change", function() {
   .attr("height",height);
 
   // + CALL AXES
-
 
   svg
   .append("g")
@@ -149,37 +140,10 @@ function draw() {
 
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedCategory !== "Show All") {
-      if(state.selectedQuestion !== "Show All") {
-          if(state.selectedRatingLevel !== "Show All"){
-            filteredData = state.data.filter(d => d.Rating_Level === state.selectedRatingLevel);
-          }
-        filteredData = state.data.filter(d => d.Question === state.selectedQuestion);
-      }
-    filteredData = state.data.filter(d => d.Category === state.selectedCategory);
-    }
-      
 
-  //2 not filtering
-/*   if (state.selectedCategory !== "Show All") {
-    if( d.Category === state.selectedCategory || d.Question === state.selectedQuestion || d.Rating_Level === state.selectedRatingLevel)
-      { 
-        return d;
-      }} */
-
- //1only filtering on one     
-/*   if (state.selectedCategory !== "Show All") {
-    filteredData = state.data.filter(d => d.Category === state.selectedCategory);
-  }
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedQuestion !== "Show All") {
     filteredData = state.data.filter(d => d.Question === state.selectedQuestion);
-  }
-  // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedRatingLevel !== "Show All") {
-    filteredData = state.data.filter(d => d.Rating_Level === state.selectedRatingLevel );
-  }
- */
+
+ 
   console.log(filteredData)
 const dot = svg
    .selectAll("circle")
@@ -192,15 +156,16 @@ const dot = svg
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
           .attr("stroke", "lightgrey")
           .attr("opacity", 0.5)
-          .attr("fill", d=>colors(d.Category))
+ //         .attr("fill", d=>colors(d.Risk_Level))
 /*           .attr("fill", d => {
-            if (d.party === "D") return "blue";
+            if (d.Risk_Level === "High") return "blue";
             else if (d.party === "R") return "red";
 
             else return "purple";
           }) */
           .attr("r", radius)
           .attr("cy", d => yScale(d.Risk_Name))
+          .attr("cx", d => xScale(d.Risk_Rating)) // initial value - to be transitioned
           .attr("cx", d => margin.left) // initial value - to be transitioned
           .call(enter =>
             enter

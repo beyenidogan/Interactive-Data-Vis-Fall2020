@@ -1,94 +1,94 @@
-﻿Question,Risk_Name,Category,Risk_Rating,Rating_Level
-Most likely fallout for the world,Prolonged recession of the global economy ,Economic,68.60%,High
-Most likely fallout for the world,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Economic,56.80%,High
-Most likely fallout for the world,Failure of industries or sectors in certain countries to properly recover ,Economic,55.90%,High
-Most likely fallout for the world,High levels of structural unemployment (especially youth) ,Economic,49.30%,High
-Most likely fallout for the world,Tighter restrictions on the cross-border movement of people and goods ,Geopolitical,48.70%,High
-Most likely fallout for the world,Weakening of fiscal positions in major economies ,Economic,45.80%,High
-Most likely fallout for the world,Protracted disruption of global supply chains ,Economic,42.10%,High
-Most likely fallout for the world,Economic collapse of an emerging market or developing economy ,Economic,38.00%,Medium
-Most likely fallout for the world,Cyberattacks and data fraud due to a sustained shift in working patterns ,Technology,37.80%,Medium
-Most likely fallout for the world,Another global outbreak of COVID-19 or different infectious disease ,Societal,30.80%,Medium
-Most likely fallout for the world,Additional unemployment from accelerated workforce automation ,Technology,24.80%,Medium
-Most likely fallout for the world,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical,24.20%,Medium
-Most likely fallout for the world,Governmental retention of emergency powers and/or erosion of civil liberties ,Societal,23.30%,Medium
-Most likely fallout for the world,Exacerbation of mental health issues ,Societal,21.90%,Medium
-Most likely fallout for the world,Fresh surge in inequality and societal divisiveness ,Societal,21.30%,Medium
-Most likely fallout for the world,Sharp increase in inflation globally ,Economic,20.20%,Medium
-Most likely fallout for the world,Humanitarian crises exacerbated by a reduction in foreign aid ,Geopolitical,19.60%,Low
-Most likely fallout for the world,Anger with political leaders and distrust of government ,Societal,18.40%,Low
-Most likely fallout for the world,Higher risk of failing to invest enough in climate resilience and adaptation ,Environmental,18.20%,Low
-Most likely fallout for the world,Massive capital outflows and slowdown in Foreign Direct Investment ,Economic,17.90%,Low
-Most likely fallout for the world,Sharp underfunding of retirement due to pension fund devaluation ,Economic,17.60%,Low
-Most likely fallout for the world,Nationalization of strategic industries in certain countries ,Geopolitical,17.00%,Low
-Most likely fallout for the world,Weakened capacity or collapse of national social security systems ,Societal,16.40%,Low
-Most likely fallout for the world,Healthcare becomes prohibitively expensive or ineffective ,Societal,14.70%,Low
-Most likely fallout for the world,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Technology,13.80%,Low
-Most likely fallout for the world,Failure of education and training systems to adapt to a protracted crisis ,Societal,12.10%,Low
-Most likely fallout for the world,Failure to support and invest in multilateral organisations for global crisis response ,Geopolitical,7.80%,Low
-Most likely fallout for the world,Breakdown of IT infrastructure and networks ,Technology,6.90%,Low
-Most likely fallout for the world,Sharp erosion of global decarbonization efforts ,Environmental,4.60%,Low
-Most likely fallout for the world,Spike in anti-business sentiment,Societal,3.20%,Low
-Most likely fallout for the world,Exacerbation of long-standing military conflicts,Geopolitical,2.30%,Low
-Greatest concern for the world,Prolonged recession of the global economy ,Economic,58.50%,High
-Greatest concern for the world,High levels of structural unemployment (especially youth) ,Economic,43.80%,High
-Greatest concern for the world,Another global outbreak of COVID-19 or different infectious disease ,Societal,40.10%,High
-Greatest concern for the world,Weakening of fiscal positions in major economies ,Economic,39.20%,Medium
-Greatest concern for the world,Failure of industries or sectors in certain countries to properly recover ,Economic,35.40%,Medium
-Greatest concern for the world,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Economic,35.20%,Medium
-Greatest concern for the world,Tighter restrictions on the cross-border movement of people and goods ,Geopolitical,34.00%,Medium
-Greatest concern for the world,Economic collapse of an emerging market or developing economy ,Economic,33.70%,Medium
-Greatest concern for the world,Protracted disruption of global supply chains ,Economic,33.70%,Medium
-Greatest concern for the world,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical,28.50%,Medium
-Greatest concern for the world,Weakened capacity or collapse of national social security systems ,Societal,27.70%,Medium
-Greatest concern for the world,Humanitarian crises exacerbated by a reduction in foreign aid ,Geopolitical,27.40%,Medium
-Greatest concern for the world,Cyberattacks and data fraud due to a sustained shift in working patterns ,Technology,25.40%,Medium
-Greatest concern for the world,Fresh surge in inequality and societal divisiveness ,Societal,25.10%,Medium
-Greatest concern for the world,Sharp increase in inflation globally ,Economic,25.10%,Medium
-Greatest concern for the world,Governmental retention of emergency powers and/or erosion of civil liberties ,Societal,24.80%,Medium
-Greatest concern for the world,Healthcare becomes prohibitively expensive or ineffective ,Societal,23.90%,Medium
-Greatest concern for the world,Additional unemployment from accelerated workforce automation ,Technology,18.70%,Low
-Greatest concern for the world,Nationalization of strategic industries in certain countries ,Geopolitical,17.60%,Low
-Greatest concern for the world,Exacerbation of mental health issues ,Societal,17.00%,Low
-Greatest concern for the world,Anger with political leaders and distrust of government ,Societal,17.00%,Low
-Greatest concern for the world,Massive capital outflows and slowdown in Foreign Direct Investment ,Economic,16.40%,Low
-Greatest concern for the world,Higher risk of failing to invest enough in climate resilience and adaptation ,Environmental,16.10%,Low
-Greatest concern for the world,Failure to support and invest in multilateral organisations for global crisis response ,Geopolitical,15.00%,Low
-Greatest concern for the world,Sharp underfunding of retirement due to pension fund devaluation ,Economic,13.00%,Low
-Greatest concern for the world,Sharp erosion of global decarbonization efforts ,Environmental,11.20%,Low
-Greatest concern for the world,Failure of education and training systems to adapt to a protracted crisis ,Societal,9.20%,Low
-Greatest concern for the world,Breakdown of IT infrastructure and networks ,Technology,8.40%,Low
-Greatest concern for the world,Exacerbation of long-standing military conflicts,Geopolitical,7.20%,Low
-Greatest concern for the world,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Technology,6.30%,Low
-Greatest concern for the world,Spike in anti-business sentiment,Societal,3.20%,Low
-Most worrisome for your company,Prolonged recession of the global economy ,Economic,66.30%,High
-Most worrisome for your company,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Economic,52.70%,High
-Most worrisome for your company,Cyberattacks and data fraud due to a sustained shift in working patterns ,Technology,50.10%,High
-Most worrisome for your company,Failure of industries or sectors in certain countries to properly recover ,Economic,50.10%,High
-Most worrisome for your company,Protracted disruption of global supply chains ,Economic,48.40%,High
-Most worrisome for your company,Tighter restrictions on the cross-border movement of people and goods ,Geopolitical,42.90%,High
-Most worrisome for your company,Another global outbreak of COVID-19 or different infectious disease ,Societal,35.40%,Medium
-Most worrisome for your company,Economic collapse of an emerging market or developing economy ,Economic,34.60%,Medium
-Most worrisome for your company,Weakening of fiscal positions in major economies ,Economic,33.40%,Medium
-Most worrisome for your company,Sharp increase in inflation globally ,Economic,32.60%,Medium
-Most worrisome for your company,Breakdown of IT infrastructure and networks ,Technology,29.10%,Medium
-Most worrisome for your company,High levels of structural unemployment (especially youth) ,Economic,23.90%,Medium
-Most worrisome for your company,Massive capital outflows and slowdown in Foreign Direct Investment ,Economic,23.90%,Medium
-Most worrisome for your company,Exacerbation of mental health issues ,Societal,19.30%,Low
-Most worrisome for your company,Sharp underfunding of retirement due to pension fund devaluation ,Economic,17.60%,Low
-Most worrisome for your company,Spike in anti-business sentiment,Societal,17.30%,Low
-Most worrisome for your company,Nationalization of strategic industries in certain countries ,Geopolitical,17.00%,Low
-Most worrisome for your company,Additional unemployment from accelerated workforce automation ,Technology,16.40%,Low
-Most worrisome for your company,Governmental retention of emergency powers and/or erosion of civil liberties ,Societal,14.70%,Low
-Most worrisome for your company,Healthcare becomes prohibitively expensive or ineffective ,Societal,13.50%,Low
-Most worrisome for your company,Higher risk of failing to invest enough in climate resilience and adaptation ,Environmental,11.50%,Low
-Most worrisome for your company,Weakened capacity or collapse of national social security systems ,Societal,10.70%,Low
-Most worrisome for your company,Failure to support and invest in multilateral organisations for global crisis response ,Geopolitical,10.40%,Low
-Most worrisome for your company,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical,10.40%,Low
-Most worrisome for your company,Failure of education and training systems to adapt to a protracted crisis ,Societal,9.20%,Low
-Most worrisome for your company,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Technology,8.60%,Low
-Most worrisome for your company,Fresh surge in inequality and societal divisiveness ,Societal,8.40%,Low
-Most worrisome for your company,Anger with political leaders and distrust of government ,Societal,8.40%,Low
-Most worrisome for your company,Sharp erosion of global decarbonization efforts ,Environmental,6.90%,Low
-Most worrisome for your company,Humanitarian crises exacerbated by a reduction in foreign aid ,Geopolitical,4.30%,Low
-Most worrisome for your company,Exacerbation of long-standing military conflicts,Geopolitical,2.60%,Low
+﻿Question,Risk_Name,Risk_Summary,Category,Risk_Rating,Rating_Level
+Most likely fallout for the world,Prolonged recession of the global economy ,Recession,Economic,0.686,High
+Most likely fallout for the world,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Bankruptcies,Economic,0.568,High
+Most likely fallout for the world,Failure of industries or sectors in certain countries to properly recover ,Failure of Industries,Economic,0.559,High
+Most likely fallout for the world,High levels of structural unemployment (especially youth) ,Unemployment,Economic,0.493,High
+Most likely fallout for the world,Tighter restrictions on the cross-border movement of people and goods ,Limited movement,Geopolitical,0.487,High
+Most likely fallout for the world,Weakening of fiscal positions in major economies ,Economic downturn,Economic,0.458,High
+Most likely fallout for the world,Protracted disruption of global supply chains ,Supply chain,Economic,0.421,High
+Most likely fallout for the world,Economic collapse of an emerging market or developing economy ,Economic collapse of emerging markets,Economic,0.38,Medium
+Most likely fallout for the world,Cyberattacks and data fraud due to a sustained shift in working patterns ,Cyberattacks,Technology,0.378,Medium
+Most likely fallout for the world,Another global outbreak of COVID-19 or different infectious disease ,Another outbreak,Societal,0.308,Medium
+Most likely fallout for the world,Additional unemployment from accelerated workforce automation ,Unemployment due to automation,Technology,0.248,Medium
+Most likely fallout for the world,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical exploitation,Geopolitical,0.242,Medium
+Most likely fallout for the world,Governmental retention of emergency powers and/or erosion of civil liberties ,Governmental intervention,Societal,0.233,Medium
+Most likely fallout for the world,Exacerbation of mental health issues ,Mental health,Societal,0.219,Medium
+Most likely fallout for the world,Fresh surge in inequality and societal divisiveness ,Inequality,Societal,0.213,Medium
+Most likely fallout for the world,Sharp increase in inflation globally ,Global inflation,Economic,0.202,Medium
+Most likely fallout for the world,Humanitarian crises exacerbated by a reduction in foreign aid ,Humaniterian crises,Geopolitical,0.196,Low
+Most likely fallout for the world,Anger with political leaders and distrust of government ,Distrust of government,Societal,0.184,Low
+Most likely fallout for the world,Higher risk of failing to invest enough in climate resilience and adaptation ,Ignorance of climate investments,Environmental,0.182,Low
+Most likely fallout for the world,Massive capital outflows and slowdown in Foreign Direct Investment ,Slowdown of foreing investment,Economic,0.179,Low
+Most likely fallout for the world,Sharp underfunding of retirement due to pension fund devaluation ,Pension fund devaluation,Economic,0.176,Low
+Most likely fallout for the world,Nationalization of strategic industries in certain countries ,Nationalization,Geopolitical,0.17,Low
+Most likely fallout for the world,Weakened capacity or collapse of national social security systems ,Weakened social security systems,Societal,0.164,Low
+Most likely fallout for the world,Healthcare becomes prohibitively expensive or ineffective ,Healthcare ineffectiveness,Societal,0.147,Low
+Most likely fallout for the world,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Regulation of technologies,Technology,0.138,Low
+Most likely fallout for the world,Failure of education and training systems to adapt to a protracted crisis ,Education support,Societal,0.121,Low
+Most likely fallout for the world,Failure to support and invest in multilateral organisations for global crisis response ,Global crisis response,Geopolitical,0.078,Low
+Most likely fallout for the world,Breakdown of IT infrastructure and networks ,IT infrastructure,Technology,0.069,Low
+Most likely fallout for the world,Sharp erosion of global decarbonization efforts ,Decarbonization efforts,Environmental,0.046,Low
+Most likely fallout for the world,Spike in anti-business sentiment,Anti-business sentiment,Societal,0.032,Low
+Most likely fallout for the world,Exacerbation of long-standing military conflicts,Military conflicts,Geopolitical,0.023,Low
+Greatest concern for the world,Prolonged recession of the global economy ,Recession,Economic,0.585,High
+Greatest concern for the world,High levels of structural unemployment (especially youth) ,Unemployment,Economic,0.438,High
+Greatest concern for the world,Another global outbreak of COVID-19 or different infectious disease ,Another outbreak,Societal,0.401,High
+Greatest concern for the world,Weakening of fiscal positions in major economies ,Economic downturn,Economic,0.392,Medium
+Greatest concern for the world,Failure of industries or sectors in certain countries to properly recover ,Failure of Industries,Economic,0.354,Medium
+Greatest concern for the world,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Bankruptcies,Economic,0.352,Medium
+Greatest concern for the world,Tighter restrictions on the cross-border movement of people and goods ,Limited movement,Geopolitical,0.34,Medium
+Greatest concern for the world,Economic collapse of an emerging market or developing economy ,Economic collapse of emerging markets,Economic,0.337,Medium
+Greatest concern for the world,Protracted disruption of global supply chains ,Supply chain,Economic,0.337,Medium
+Greatest concern for the world,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical exploitation,Geopolitical,0.285,Medium
+Greatest concern for the world,Weakened capacity or collapse of national social security systems ,Weakened social security systems,Societal,0.277,Medium
+Greatest concern for the world,Humanitarian crises exacerbated by a reduction in foreign aid ,Humaniterian crises,Geopolitical,0.274,Medium
+Greatest concern for the world,Cyberattacks and data fraud due to a sustained shift in working patterns ,Cyberattacks,Technology,0.254,Medium
+Greatest concern for the world,Fresh surge in inequality and societal divisiveness ,Inequality,Societal,0.251,Medium
+Greatest concern for the world,Sharp increase in inflation globally ,Global inflation,Economic,0.251,Medium
+Greatest concern for the world,Governmental retention of emergency powers and/or erosion of civil liberties ,Governmental intervention,Societal,0.248,Medium
+Greatest concern for the world,Healthcare becomes prohibitively expensive or ineffective ,Healthcare ineffectiveness,Societal,0.239,Medium
+Greatest concern for the world,Additional unemployment from accelerated workforce automation ,Unemployment due to automation,Technology,0.187,Low
+Greatest concern for the world,Nationalization of strategic industries in certain countries ,Nationalization,Geopolitical,0.176,Low
+Greatest concern for the world,Exacerbation of mental health issues ,Mental health,Societal,0.17,Low
+Greatest concern for the world,Anger with political leaders and distrust of government ,Distrust of government,Societal,0.17,Low
+Greatest concern for the world,Massive capital outflows and slowdown in Foreign Direct Investment ,Slowdown of foreing investment,Economic,0.164,Low
+Greatest concern for the world,Higher risk of failing to invest enough in climate resilience and adaptation ,Ignorance of climate investments,Environmental,0.161,Low
+Greatest concern for the world,Failure to support and invest in multilateral organisations for global crisis response ,Global crisis response,Geopolitical,0.15,Low
+Greatest concern for the world,Sharp underfunding of retirement due to pension fund devaluation ,Pension fund devaluation,Economic,0.13,Low
+Greatest concern for the world,Sharp erosion of global decarbonization efforts ,Decarbonization efforts,Environmental,0.112,Low
+Greatest concern for the world,Failure of education and training systems to adapt to a protracted crisis ,Education support,Societal,0.092,Low
+Greatest concern for the world,Breakdown of IT infrastructure and networks ,IT infrastructure,Technology,0.084,Low
+Greatest concern for the world,Exacerbation of long-standing military conflicts,Military conflicts,Geopolitical,0.072,Low
+Greatest concern for the world,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Regulation of technologies,Technology,0.063,Low
+Greatest concern for the world,Spike in anti-business sentiment,Anti-business sentiment,Societal,0.032,Low
+Most worrisome for your company,Prolonged recession of the global economy ,Recession,Economic,0.663,High
+Most worrisome for your company,Surge in bankruptcies (big firms and SMEs) and a wave of industry consolidation ,Bankruptcies,Economic,0.527,High
+Most worrisome for your company,Cyberattacks and data fraud due to a sustained shift in working patterns ,Cyberattacks,Technology,0.501,High
+Most worrisome for your company,Failure of industries or sectors in certain countries to properly recover ,Failure of Industries,Economic,0.501,High
+Most worrisome for your company,Protracted disruption of global supply chains ,Supply chain,Economic,0.484,High
+Most worrisome for your company,Tighter restrictions on the cross-border movement of people and goods ,Limited movement,Geopolitical,0.429,High
+Most worrisome for your company,Another global outbreak of COVID-19 or different infectious disease ,Another outbreak,Societal,0.354,Medium
+Most worrisome for your company,Economic collapse of an emerging market or developing economy ,Economic collapse of emerging markets,Economic,0.346,Medium
+Most worrisome for your company,Weakening of fiscal positions in major economies ,Economic downturn,Economic,0.334,Medium
+Most worrisome for your company,Sharp increase in inflation globally ,Global inflation,Economic,0.326,Medium
+Most worrisome for your company,Breakdown of IT infrastructure and networks ,IT infrastructure,Technology,0.291,Medium
+Most worrisome for your company,High levels of structural unemployment (especially youth) ,Unemployment,Economic,0.239,Medium
+Most worrisome for your company,Massive capital outflows and slowdown in Foreign Direct Investment ,Slowdown of foreing investment,Economic,0.239,Medium
+Most worrisome for your company,Exacerbation of mental health issues ,Mental health,Societal,0.193,Low
+Most worrisome for your company,Sharp underfunding of retirement due to pension fund devaluation ,Pension fund devaluation,Economic,0.176,Low
+Most worrisome for your company,Spike in anti-business sentiment,Anti-business sentiment,Societal,0.173,Low
+Most worrisome for your company,Nationalization of strategic industries in certain countries ,Nationalization,Geopolitical,0.17,Low
+Most worrisome for your company,Additional unemployment from accelerated workforce automation ,Unemployment due to automation,Technology,0.164,Low
+Most worrisome for your company,Governmental retention of emergency powers and/or erosion of civil liberties ,Governmental intervention,Societal,0.147,Low
+Most worrisome for your company,Healthcare becomes prohibitively expensive or ineffective ,Healthcare ineffectiveness,Societal,0.135,Low
+Most worrisome for your company,Higher risk of failing to invest enough in climate resilience and adaptation ,Ignorance of climate investments,Environmental,0.115,Low
+Most worrisome for your company,Weakened capacity or collapse of national social security systems ,Weakened social security systems,Societal,0.107,Low
+Most worrisome for your company,Failure to support and invest in multilateral organisations for global crisis response ,Global crisis response,Geopolitical,0.104,Low
+Most worrisome for your company,Exploitation of COVID-19 crisis for geopolitical advantage ,Geopolitical exploitation,Geopolitical,0.104,Low
+Most worrisome for your company,Failure of education and training systems to adapt to a protracted crisis ,Education support,Societal,0.092,Low
+Most worrisome for your company,"Abrupt adoption and regulation of technologies (e.g. e-voting, telemedicine, surveillance) ",Regulation of technologies,Technology,0.086,Low
+Most worrisome for your company,Fresh surge in inequality and societal divisiveness ,Inequality,Societal,0.084,Low
+Most worrisome for your company,Anger with political leaders and distrust of government ,Distrust of government,Societal,0.084,Low
+Most worrisome for your company,Sharp erosion of global decarbonization efforts ,Decarbonization efforts,Environmental,0.069,Low
+Most worrisome for your company,Humanitarian crises exacerbated by a reduction in foreign aid ,Humaniterian crises,Geopolitical,0.043,Low
+Most worrisome for your company,Exacerbation of long-standing military conflicts,Military conflicts,Geopolitical,0.026,Low
