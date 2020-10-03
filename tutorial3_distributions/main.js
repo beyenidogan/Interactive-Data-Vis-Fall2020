@@ -3,6 +3,7 @@ const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.9,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
   radius = 5;
+  default_selection = "Select a Country to highlight";
 
   console.log('width',width)
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
@@ -15,11 +16,11 @@ let yScale;
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectedParty: "All" // + YOUR FILTER SELECTION
+  selectedCountry: "All" // + YOUR FILTER SELECTION
 };
 
 /* LOAD DATA */
-d3.json("../data/environmentRatings.json", d3.autoType).then(raw_data => {
+d3.csv("../data/Happiness2019.csv", d3.autoType).then(raw_data => {
   // + SET YOUR DATA PATH
   console.log("raw_data", raw_data);
   state.data = raw_data; 
@@ -32,21 +33,21 @@ d3.json("../data/environmentRatings.json", d3.autoType).then(raw_data => {
 function init() {
   // + SCALES
   xScale=d3.scaleLinear()
-    .domain(d3.extent(state.data, d => d.ideology_rating))
+    .domain(d3.extent(state.data, d => d["GDP per capita"]))
     .range([margin.left, width-margin.right])
 
   yScale=d3.scaleLinear()
 //    .domain([0,100])
-    .domain(d3.extent(state.data, d => d.environmental_rating))
+    .domain(d3.extent(state.data, d => d.Score))
     .range([height-margin.bottom,margin.top])
 
   // + AXES
 
 const xAxis=d3.axisBottom(xScale)
-.ticks(5)
+//.ticks(5)
 
 const yAxis=d3.axisLeft(yScale)
-.ticks(5);
+//.ticks(5);
 
 
   // + UI ELEMENT SETUP
@@ -55,15 +56,20 @@ const yAxis=d3.axisLeft(yScale)
     // `this` === the selectElement
     // 'this.value' holds the dropdown value a user just selected
 
-    state.selectedParty = this.value;
+    state.selectedCountry = this.value;
     console.log("new value is", this.value);
     draw(); // re-draw the graph based on this new selection
   });
 
   // add in dropdown options from the unique values in the data
-  selectElement
+
+
+    selectElement
     .selectAll("option")
-    .data(["All", "D", "R", "I"]) // + ADD UNIQUE VALUES
+    .data([default_selection,
+      ...Array.from(new Set(state.data.map(d => d["Country or region"]))),
+      
+    ])
     .join("option")
     .attr("value", d => d)
     .text(d => d);
