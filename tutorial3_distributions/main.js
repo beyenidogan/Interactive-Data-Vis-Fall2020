@@ -11,12 +11,14 @@ const width = window.innerWidth * 0.7,
 let svg;
 let xScale;
 let yScale;
+let rScale;
+let color;
 
 
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectedCountry: "All" // + YOUR FILTER SELECTION
+  selectedCountry: default_selection // + YOUR FILTER SELECTION
 };
 
 /* LOAD DATA */
@@ -37,10 +39,17 @@ function init() {
     .range([margin.left, width-margin.right])
 
   yScale=d3.scaleLinear()
-//    .domain([0,100])
     .domain(d3.extent(state.data, d => d.Score))
     .range([height-margin.bottom,margin.top])
 
+    
+  color=d3.scaleLinear()
+        .domain(d3.extent(state.data, d => d.Score))
+        .range(["#F8766D","#80F4CF"])
+
+  rScale=d3.scaleLinear()
+        .domain(d3.extent(state.data, d => d["GDP per capita"]))
+        .range([4,15]); 
   // + AXES
 
 const xAxis=d3.axisBottom(xScale)
@@ -101,7 +110,7 @@ const yAxis=d3.axisLeft(yScale)
   .attr("class", "axis-label")
   .attr("x", "50%")
   .attr("dy", "3em")
-  .text("Ideology Rating");
+  .text("GDP per Capita");
 
   svg
   .append("g")
@@ -113,7 +122,7 @@ const yAxis=d3.axisLeft(yScale)
   .attr("y", "50%")
   .attr("dx", "-3em")
   .attr("writing-mode", "vertical-rl")
-  .text("Environmental Rating");
+  .text("Happiness Score");
 
 
   draw(); // calls the draw function
@@ -127,14 +136,14 @@ function draw() {
   // + FILTER DATA BASED ON STATE
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedParty !== "All") {
-    filteredData = state.data.filter(d => d.party === state.selectedParty);
+  if (state.selectedCountry !== default_selection) {
+    filteredData = state.data.filter(d => d["Country or region"] === state.selectedCountry);
   }
 
 
 const dot = svg
    .selectAll("circle")
-   .data(filteredData, d => d.name)
+   .data(filteredData, d => d["Country or region"])
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
@@ -142,21 +151,22 @@ const dot = svg
           .append("circle")
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
           .attr("stroke", "lightgrey")
-          .attr("opacity", 0.5)
-          .attr("fill", d => {
-            if (d.party === "D") return "blue";
-            else if (d.party === "R") return "red";
-            else return "purple";
-          })
-          .attr("r", radius)
-          .attr("cy", d => yScale(d.environmental_rating))
-          .attr("cx", d => margin.left) // initial value - to be transitioned
+          .attr("fill-opacity", 0.7)
+         /* .attr("fill", d => {
+            if (d.Score >= "5") return "green";
+            else if (d.Score <5 && d.Score>3) return "yellow";
+            else return "red";
+          })*/
+          .attr("fill", d => color(d.Score))
+          .attr("stroke", d => color(d.Score))
+          .attr("r", d =>rScale(d["GDP per capita"]))
+          .attr("cy", d => yScale(d.Score))
+          .attr("cx", d => xScale(d["GDP per capita"])) // initial value - to be transitioned
           .call(enter =>
             enter
               .transition() // initialize transition
-              .delay(d => 500 * d.ideology_rating) // delay on each element
+              .delay(d => 100 * d.Score) // delay on each element
               .duration(500) // duration 500ms
-              .attr("cx", d => xScale(d.ideology_rating))
           ),
       update =>
         update.call(update =>
@@ -164,19 +174,19 @@ const dot = svg
           update
             .transition()
             .duration(250)
-            .attr("stroke", "black")
             .transition()
             .duration(250)
-            .attr("stroke", "lightgrey")
+            .attr("r", d =>2*rScale(d["GDP per capita"]))
         ),
       exit =>
         exit.call(exit =>
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
-            .delay(d => 50 * d.ideology_rating)
-            .duration(500)
-            .attr("cx", width)
+        //    .delay(d => 50 * d.Score)
+            .duration(50)
+            //.attr("cx", width)
+            .attr("r", d =>rScale(d["GDP per capita"]))
             .remove()
         )
    );
