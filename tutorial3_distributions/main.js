@@ -1,7 +1,7 @@
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.58,
-  margin = { top: 30, bottom: 40, left: 60, right: 40 },
+  margin = { top: 30, bottom: 40, left:60, right: 40 },
   radius = 5;
   default_selection = "All";
 
@@ -13,6 +13,8 @@ let xScale;
 let yScale;
 let rScale;
 let color;
+let xPosition;
+let yPosition;
 
 
 /* APPLICATION STATE */
@@ -168,7 +170,36 @@ const dot = svg
               .transition() // initialize transition
               .delay(d => 100 * d.Score) // delay on each element
               .duration(500) // duration 500ms
-          ),
+          )
+          .on("mouseover", function(d) {                                                              //Tooltip Option 3 (div in html, along with css tooltip)
+          
+            //Get this bar's x/y values, then augment for the tooltip
+            //xPosition = xScale(d["GDP per capita"]) ;
+            //yPosition = yScale(d.Score);  
+            xPosition = d3.event.pageX -80;
+            yPosition = d3.event.pageY - 10;
+            console.log(d3.event.pageX, d3.event.pageY)
+      
+            
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")						
+                    .select("#value")
+                    .text(d.Score);
+            
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+            })  
+   /*          .on("mouseout", function(d) {
+              d3.select("#tooltip").classed("hidden", true);
+            })  */
+            /*.on("mouseout", function(d) {
+              d3.select("#tooltip")
+              .remove() ;
+  })*/
+  
+          ,
       update =>
         update.call(update =>
           // update selections -- all data elements that match with a `.dot` element
@@ -190,5 +221,8 @@ const dot = svg
             .attr("r", d =>rScale(d["GDP per capita"]))
             .remove()
         )
-   );
+   )
+   
 }
+
+

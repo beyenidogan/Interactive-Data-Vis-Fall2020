@@ -17,12 +17,17 @@
               <p id="text2" class="main">The World Happiness Report is a survey by United Nations Sustainable Development Solutions Network on the state of global happiness that ranks 156 countries by how happy their citizens perceive themselves to be. 
                 <a href="https://worldhappiness.report/ed/2019/">In 2019</a> the survey focuses on how happiness has evolved over the past dozen years, with a focus on the technologies, social norms, conflicts and government policies that have driven those changes. </p>
                   
-                  <hr id="divider" class="line">
+                
+                  <div class="line"></div>
+                  
                   <br>
                   <label for="dropdown">Select Country</label>
                   <select id="dropdown" name="dropdown"></select>
-                  <div id="d3-container"> 
-                  </div>
+                  <div id="d3-container"> </div>
+                  <div id="tooltip" class="hidden">
+                    <h2><span id="tooltipheader">Country</strong></h2>
+                    <p><span id="value">100</span>%</p>
+                  </div> 
             </div>
           </div>
       </div>
