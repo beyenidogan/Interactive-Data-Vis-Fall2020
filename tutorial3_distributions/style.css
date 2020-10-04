@@ -1,26 +1,76 @@
 body {
-    /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: 'Ebrima', sans-serif;
     font-size: 14px;
-    padding: 2em 3em;
-    background: url(images/1772251.jpg) no-repeat left;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202227;
+    padding: 1em 8em 2em 8em;
 
 }
-  .dot {
+
+#main {
+  border-radius: 25px;
+  display: flex;
+  position: relative;
+  box-shadow: 0rem 1.375rem 1.375rem 0rem rgba(0,0,0,0.8);
+  border-radius: 0.375rem 0.375rem 0.375rem 0.375rem;
+  background-image: linear-gradient(to bottom, rgba(256,256,256,0.0),rgba(256,256,256,0.15));
+  padding: 1em 2em 2em 2em;
+
+}
+h1{
+  text-align: center;
+}
+p {
+  font-size: 13px;
+  color: rgb(210,210,210);
+  font-family: 'Ebrima', sans-serif;
+}
+.scale{
+  align-items: center;
+}
+img {
+  height:20;
+  width:auto;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ 
+.dot {
     cursor: pointer;
   }
 
-    
-  .axis-label {
-    font-size: 14px;
-    fill: black;
-    text-anchor: end;
-  }
-  .axis {
-    font-size: 14px;
-  }
+#divider{
+  border: 2px solid rgba(256,256,256,0.1); 
+}
 
-  div.tooltip{
+.axis {
+  font-size: 12px;
+
+}   
+.axis-label {
+    font-size: 13px;
+    text-anchor: end;
+    font-family: 'Ebrima', sans-serif;
+
+}
+
+ #dropdown {
+  padding: 0.5em 0.5em;
+  color:  #5e5e5e;
+  size: 5
+}
+ 
+
+div.tooltip{
     position      : absolute;
     text-align    : center;
     max-width     : 70px;
@@ -34,16 +84,11 @@ body {
     color         : whitesmoke;
     pointer-events: none;
 }
- #header {
-    text-align: left;
-    color: #008a77;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-#subtitle {
-    text-align: left;
-    color:  #095248;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    padding-bottom: 5px;
-    border-bottom: 5px solid darkslategrey;
-    border-bottom-style: dotted;
+
+
+#d3-container{
+  max-width: 400;
+  margin: auto;
+  margin-left: 5%;
+  margin-right: 5%;
 }

@@ -1,9 +1,9 @@
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.9,
-  margin = { top: 20, bottom: 50, left: 60, right: 40 },
+  height = window.innerHeight * 0.58,
+  margin = { top: 30, bottom: 40, left: 60, right: 40 },
   radius = 5;
-  default_selection = "Select a Country to highlight";
+  default_selection = "All";
 
   console.log('width',width)
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
@@ -108,11 +108,11 @@ const yAxis=d3.axisLeft(yScale)
   .call(xAxis)
   .append("text")
   .attr("class", "axis-label")
-  .attr("x", "50%")
+  .attr("x", "57%")
   .attr("dy", "3em")
   //.attr("x", width-margin.right)
   //.attr("y", -6)
-  .attr("fill","black")
+  .attr("fill","white")
   .text("GDP per Capita");
 
 
@@ -123,13 +123,12 @@ const yAxis=d3.axisLeft(yScale)
   .call(yAxis)
   .append("text")
   .attr("class", "axis-label")
-  //.attr("transform", "rotate(-90)")
-  //.attr("x",-margin.top)
-  //.attr("y",margin.top)
-  .attr("y", "50%")
-  .attr("dx", "3em")
-  .attr("writing-mode", "vertical-lr")
-  .attr("fill","black")
+  //.attr("x","-25%")
+  .attr("y", "-3em")
+  .attr("dx", "-12em")
+  //.attr("writing-mode", "vertical-lr")
+  .attr("transform", "rotate(-90)")
+  .attr("fill","white")
   .text("Happiness Score");
 
   draw(); // calls the draw function
