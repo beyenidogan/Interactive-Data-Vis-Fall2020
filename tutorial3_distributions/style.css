@@ -42,11 +42,25 @@ img {
   max-width: 100%;
   height: auto;
 } */
+a:link {
+  color: #9CBBB7;
+}
 
+/* visited link */
+a:visited {
+  color: #9CBBB7;
+}
+
+/* mouse over link */
+a:hover {
+  color: #999999;
+}
+
+/* selected link */
+a:active {
+  color: #9CBBB7;
+}
  
-.dot {
-    cursor: pointer;
-  }
 
 
 .line {
@@ -72,14 +86,19 @@ img {
 
 }
 
- #dropdown {
+ #dropdown1 {
   margin-left: 1%;
   padding: 0.2em 0.2em;
   color:  #5e5e5e;
   size: 5
 }
  
-
+#dropdown2 {
+  margin-left: 1%;
+  padding: 0.2em 0.2em;
+  color:  #5e5e5e;
+  size: 5
+}
 div.tooltip{
     position      : absolute;
     text-align    : center;
@@ -102,14 +121,17 @@ div.tooltip{
   margin-left: 3%;
   margin-right: 5%;
 }
-
+/* .dot {
+  cursor: pointer;
+}
+ */
 #tooltip {
   position: absolute;
-  width: 200px;
+  width: auto;
   height: auto;
   padding: 10px;
-  color:black;
-  background-color: rgba(256, 256, 256, 0.9);
+  color:white;
+  background-color: rgba(32, 34, 39,0.8);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -119,14 +141,17 @@ div.tooltip{
   pointer-events: none;
 }
 
-
-
 #tooltip.hidden {
   display: none;
 }
 
+#tooltip h1 {
+
+  font-size: 16px;
+  line-height: 40px;
+}
 #tooltip h2 {
   margin: 0;
   font-size: 16px;
-  line-height: 20px;
+  
 }

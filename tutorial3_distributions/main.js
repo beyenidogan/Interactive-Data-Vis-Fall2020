@@ -1,9 +1,10 @@
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.58,
+  height = window.innerHeight * 0.5,
   margin = { top: 30, bottom: 40, left:60, right: 40 },
   radius = 5;
-  default_selection = "All";
+  defaultCountry = "Select Country";
+  defaultMetric="GDP per capita";
 
   console.log('width',width)
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
@@ -15,19 +16,22 @@ let rScale;
 let color;
 let xPosition;
 let yPosition;
-
+let sortedCountries;
 
 /* APPLICATION STATE */
 let state = {
   data: [],
-  selectedCountry: default_selection // + YOUR FILTER SELECTION
+  selectedCountry: defaultCountry, // + YOUR FILTER SELECTION
+  selectedMetric: defaultMetric
 };
 
 /* LOAD DATA */
 d3.csv("../data/Happiness2019.csv", d3.autoType).then(raw_data => {
   // + SET YOUR DATA PATH
   console.log("raw_data", raw_data);
+  
   state.data = raw_data; 
+  console.log(state.data.columns)
   init();
 });
  console.log("margin left", margin.left)
@@ -37,7 +41,7 @@ d3.csv("../data/Happiness2019.csv", d3.autoType).then(raw_data => {
 function init() {
   // + SCALES
   xScale=d3.scaleLinear()
-    .domain(d3.extent(state.data, d => d["GDP per capita"]))
+    .domain(d3.extent(state.data, d => d[state.selectedMetric]))
     .range([margin.left, width-margin.right])
 
   yScale=d3.scaleLinear()
@@ -50,7 +54,7 @@ function init() {
         .range(["#F8766D","#80F4CF"])
 
   rScale=d3.scaleLinear()
-        .domain(d3.extent(state.data, d => d["GDP per capita"]))
+        .domain(d3.extent(state.data, d => d[state.selectedMetric]))
         .range([4,15]); 
   // + AXES
 
@@ -63,8 +67,8 @@ const yAxis=d3.axisLeft(yScale)
 
   // + UI ELEMENT SETUP
 
-  const selectElement = d3.select("#dropdown").on("change", function() {
-    // `this` === the selectElement
+  const selectCountry = d3.select("#dropdown1").on("change", function() {
+    // `this` === the selectCountry
     // 'this.value' holds the dropdown value a user just selected
 
     state.selectedCountry = this.value;
@@ -72,14 +76,34 @@ const yAxis=d3.axisLeft(yScale)
     draw(); // re-draw the graph based on this new selection
   });
 
+
   // add in dropdown options from the unique values in the data
 
+  //??????????
+  //sortedCountries=state.data.slice().sort((a,b) => d3.descending(a["Country or region"], b["Country or region"]) )     
 
-    selectElement
+  selectCountry
     .selectAll("option")
-    .data([default_selection,
-      ...Array.from(new Set(state.data.map(d => d["Country or region"]))),
-      
+    .data([defaultCountry,
+      ...Array.from(new Set(state.data.map(d => d["Country or region"]))), 
+    ])
+    .join("option")
+    .attr("value", d => d)
+    .text(d => d);
+
+  const selectMetric = d3.select("#dropdown2").on("change", function() {
+      // `this` === the selectCountry
+      // 'this.value' holds the dropdown value a user just selected
+  
+      state.selectedMetric = this.value;
+      console.log("new metric is", this.value);
+      draw(); // re-draw the graph based on this new selection
+    });
+  
+  selectMetric
+    .selectAll("option")
+    .data([defaultMetric,
+      ...Array.from(new Set(state.data.columns.slice(4,9))), 
     ])
     .join("option")
     .attr("value", d => d)
@@ -94,18 +118,10 @@ const yAxis=d3.axisLeft(yScale)
 
   // + CALL AXES
 
-/*   svg.append("g")
-  .attr("class","x-axis")
 
-  .call(xAxis);   
-
-  svg.append("g")
-  .attr("class","y-axis")
-  .attr("transform","translate("+(height)+",0)")
-  .call(yAxis); */
   svg
   .append("g")
-  .attr("class", "axis")
+  .attr("class", "x-axis")
   .attr("transform", `translate(0,${height - margin.bottom})`)
   .call(xAxis)
   .append("text")
@@ -115,12 +131,12 @@ const yAxis=d3.axisLeft(yScale)
   //.attr("x", width-margin.right)
   //.attr("y", -6)
   .attr("fill","white")
-  .text("GDP per Capita");
+  .text(state.selectedMetric); 
 
 
   svg
   .append("g")
-  .attr("class", "axis")
+  .attr("class", "y-axis")
   .attr("transform", `translate(${margin.left},0)`)
   .call(yAxis)
   .append("text")
@@ -144,7 +160,7 @@ function draw() {
   // + FILTER DATA BASED ON STATE
   let filteredData = state.data;
   // if there is a selectedParty, filter the data before mapping it to our elements
-  if (state.selectedCountry !== default_selection) {
+  if (state.selectedCountry !== defaultCountry) {
     filteredData = state.data.filter(d => d["Country or region"] === state.selectedCountry);
   }
 
@@ -162,9 +178,9 @@ const dot = svg
           .attr("fill-opacity", 0.7)
           .attr("fill", d => color(d.Score))
           .attr("stroke", d => color(d.Score))
-          .attr("r", d =>rScale(d["GDP per capita"]))
+          .attr("r", d =>rScale(d[state.selectedMetric]))
           .attr("cy", d => yScale(d.Score))
-          .attr("cx", d => xScale(d["GDP per capita"])) // initial value - to be transitioned
+          .attr("cx", d => xScale(d[state.selectedMetric])) // initial value - to be transitioned
           .call(enter =>
             enter
               .transition() // initialize transition
@@ -176,8 +192,8 @@ const dot = svg
             //Get this bar's x/y values, then augment for the tooltip
             //xPosition = xScale(d["GDP per capita"]) ;
             //yPosition = yScale(d.Score);  
-            xPosition = d3.event.pageX -80;
-            yPosition = d3.event.pageY - 10;
+            xPosition = d3.event.pageX -100;
+            yPosition = d3.event.pageY - 20;
             console.log(d3.event.pageX, d3.event.pageY)
       
             
@@ -186,18 +202,24 @@ const dot = svg
                     .style("left", xPosition + "px")
                     .style("top", yPosition + "px")						
                     .select("#value")
-                    .text(d.Score);
+                    .text(d.Score)
+                    .style("fill", color(d.Score))
+
+            d3.select("#tooltip")       
+                    .select("#tooltipheader")
+                    .text(d["Country or region"])
+                    .style("fill", color(d.Score))
             
             //Show the tooltip
             d3.select("#tooltip").classed("hidden", false);
             })  
-   /*          .on("mouseout", function(d) {
+           .on("mouseleave", function(d) {
               d3.select("#tooltip").classed("hidden", true);
-            })  */
-            /*.on("mouseout", function(d) {
+            })  
+           /* .on("mouseleave", function(d) {
               d3.select("#tooltip")
               .remove() ;
-  })*/
+               })*/
   
           ,
       update =>
@@ -206,9 +228,14 @@ const dot = svg
           update
             .transition()
             .duration(250)
+            //.attr("r", d =>2*rScale(d[defaultMetric]))
+            .attr("cx", d => xScale(d[state.selectedMetric]))
+            .attr("fill-opacity", 0.9)
+            .attr("stroke-opacity", 1)
+            .attr("r", d =>2*rScale(d[state.selectedMetric]))
             .transition()
             .duration(250)
-            .attr("r", d =>2*rScale(d["GDP per capita"]))
+            .attr("r", d =>rScale(d[state.selectedMetric]))
         ),
       exit =>
         exit.call(exit =>
@@ -218,11 +245,62 @@ const dot = svg
         //    .delay(d => 50 * d.Score)
             .duration(50)
             //.attr("cx", width)
-            .attr("r", d =>rScale(d["GDP per capita"]))
-            .remove()
+        //    .attr("r", d =>rScale(d[selectedMetric]))
+            .attr("fill-opacity", 0.2)
+            .attr("stroke-opacity", 0.7)
         )
    )
-   
+//TRYING TO UPDATE SCALE 
+
+/* const bottom = svg
+  .selectAll("g")
+  .join(
+    enter =>
+      // enter selections -- all data elements that don't have a `.dot` element attached to them yet
+      enter
+        .append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(xAxis)
+        .append("text")
+        .attr("class", "axis-label")
+        .attr("x", "57%")
+        .attr("dy", "3em")
+        //.attr("x", width-margin.right)
+        //.attr("y", -6)
+        .attr("fill","white")
+        .text(state.selectedMetric))
+        .call(enter =>
+          enter
+            .transition() // initialize transition
+            .delay(d => 100 * d.Score) // delay on each element
+            .duration(500) // duration 500ms
+        )
+      ,
+      update =>
+        update.call(update =>
+          // update selections -- all data elements that match with a `.dot` element
+          update
+            .transition()
+            .duration(250)
+            .transition()
+            .duration(250)
+            //.attr("r", d =>2*rScale(d[defaultMetric]))
+            .call(xAxis)
+            .text(state.selectedMetric)
+        ),
+      exit =>
+        exit.call(exit =>
+          // exit selections -- all the `.dot` element that no longer match to HTML elements
+          exit
+            .transition()
+        //    .delay(d => 50 * d.Score)
+            .duration(50)
+            //.attr("cx", width)
+            //.attr("r", d =>rScale(d[defaultMetric]))
+            .remove()
+        ) */
+  
 }
 
 
