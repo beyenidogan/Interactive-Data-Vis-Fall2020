@@ -1,0 +1,49 @@
+body {
+    /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    padding: 2em 3em;
+    background: url(images/1772251.jpg) no-repeat left;
+
+}
+  .dot {
+    cursor: pointer;
+  }
+
+    
+  .axis-label {
+    font-size: 14px;
+    fill: black;
+    text-anchor: end;
+  }
+  .axis {
+    font-size: 14px;
+  }
+
+  div.tooltip{
+    position      : absolute;
+    text-align    : center;
+    max-width     : 70px;
+    max-height    : 30px;
+    padding       : 8px;
+    border        : none;
+    border-radius : 8px;
+    margin-top    : -30px;
+    font          : 10px sans-serif;
+    background    : black;
+    color         : whitesmoke;
+    pointer-events: none;
+}
+ #header {
+    text-align: left;
+    color: #008a77;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#subtitle {
+    text-align: left;
+    color:  #095248;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-bottom: 5px;
+    border-bottom: 5px solid darkslategrey;
+    border-bottom-style: dotted;
+}

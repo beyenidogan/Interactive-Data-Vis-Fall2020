@@ -94,7 +94,7 @@ const yAxis=d3.axisLeft(yScale)
 
 /*   svg.append("g")
   .attr("class","x-axis")
-  .attr("transform","translate(0,"+(width)+")")
+
   .call(xAxis);   
 
   svg.append("g")
@@ -103,27 +103,34 @@ const yAxis=d3.axisLeft(yScale)
   .call(yAxis); */
   svg
   .append("g")
-  .attr("class", "axis x-axis")
+  .attr("class", "axis")
   .attr("transform", `translate(0,${height - margin.bottom})`)
   .call(xAxis)
   .append("text")
   .attr("class", "axis-label")
   .attr("x", "50%")
   .attr("dy", "3em")
+  //.attr("x", width-margin.right)
+  //.attr("y", -6)
+  .attr("fill","black")
   .text("GDP per Capita");
+
 
   svg
   .append("g")
-  .attr("class", "axis y-axis")
+  .attr("class", "axis")
   .attr("transform", `translate(${margin.left},0)`)
   .call(yAxis)
   .append("text")
   .attr("class", "axis-label")
+  //.attr("transform", "rotate(-90)")
+  //.attr("x",-margin.top)
+  //.attr("y",margin.top)
   .attr("y", "50%")
-  .attr("dx", "-3em")
-  .attr("writing-mode", "vertical-rl")
+  .attr("dx", "3em")
+  .attr("writing-mode", "vertical-lr")
+  .attr("fill","black")
   .text("Happiness Score");
-
 
   draw(); // calls the draw function
 }
@@ -152,11 +159,6 @@ const dot = svg
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
           .attr("stroke", "lightgrey")
           .attr("fill-opacity", 0.7)
-         /* .attr("fill", d => {
-            if (d.Score >= "5") return "green";
-            else if (d.Score <5 && d.Score>3) return "yellow";
-            else return "red";
-          })*/
           .attr("fill", d => color(d.Score))
           .attr("stroke", d => color(d.Score))
           .attr("r", d =>rScale(d["GDP per capita"]))
