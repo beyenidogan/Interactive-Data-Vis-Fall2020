@@ -75,7 +75,37 @@ xAxis=d3.axisBottom(xScale)
   .attr("width",width)
   .attr("height",height);
 
- 
+ // + CALL AXES
+ svg
+ .append("g")
+ .attr("class", "x-axis")
+ .attr("transform", `translate(0,${height - margin.bottom})`)
+ .call(xAxis)
+ .append("text")
+ .attr("class", "axis-label")
+ .attr("x", "60%")
+ .attr("dy", "2.7em")
+ //.attr("x", width-margin.right)
+ //.attr("y", -6)
+ .attr("fill","white")
+ .text(state.selectedMetric); 
+
+
+svg
+ .append("g")
+ .attr("class", "y-axis")
+ .attr("transform", `translate(${margin.left},0)`)
+ .call(yAxis)
+ .append("text")
+ .attr("class", "axis-label")
+ //.attr("x","-25%")
+ .attr("y", "-3em")
+ .attr("dx", "-12em")
+ //.attr("writing-mode", "vertical-lr")
+ .attr("transform", "rotate(-90)")
+ .attr("fill","white")
+ .text("Happiness Score");
+
 
 // + UI ELEMENT SETUP
 
@@ -130,37 +160,7 @@ xAxis=d3.axisBottom(xScale)
     .attr("value", d => d)
     .text(d => d);
 
- // + CALL AXES
-  svg
-    .append("g")
-    .attr("class", "x-axis")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(xAxis)
-    .append("text")
-    .attr("class", "axis-label")
-    .attr("x", "60%")
-    .attr("dy", "2.7em")
-    //.attr("x", width-margin.right)
-    //.attr("y", -6)
-    .attr("fill","white")
-    .text(state.selectedMetric); 
-  
-  
-  svg
-    .append("g")
-    .attr("class", "y-axis")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(yAxis)
-    .append("text")
-    .attr("class", "axis-label")
-    //.attr("x","-25%")
-    .attr("y", "-3em")
-    .attr("dx", "-12em")
-    //.attr("writing-mode", "vertical-lr")
-    .attr("transform", "rotate(-90)")
-    .attr("fill","white")
-    .text("Happiness Score");
-  
+ 
   draw(); // calls the draw function
 }
 
