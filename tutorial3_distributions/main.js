@@ -190,6 +190,17 @@ const dot = svg
               .delay(d => 100 * d.Score) // delay on each element
               .duration(500) // duration 500ms
           )
+/*               .on("mouseover", function(d,i) {
+            
+                  d3.select("dot")
+                  //.attr("transform", "scale(1.1,1.1)")
+                  .transition()
+                  .duration(250)
+                  .attr("r", d =>((d["Country or region"] === state.selectedCountry)? 2.5 : 1)*rScale(d[state.selectedMetric]))
+                  .transition()
+                  .duration(250)
+                  .attr("r", d =>rScale(d[state.selectedMetric]))
+                }) */
           .on("mouseover", function(d) {                                                              //Tooltip Option 3 (div in html, along with css tooltip)
           
             //Get this bar's x/y values, then augment for the tooltip
