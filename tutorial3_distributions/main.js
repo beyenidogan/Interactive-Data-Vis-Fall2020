@@ -108,6 +108,16 @@ xAxis=d3.axisBottom(xScale)
   
       state.selectedMetric = this.value;
       console.log("new metric is", this.value);
+
+      xScale.domain([0, d3.max(state.data, d => d[state.selectedMetric])]);
+      d3.select("g.x-axis")
+        .transition()
+        .duration(2000)
+        .call(xAxis.scale(xScale))
+        .select("text.axis-label")
+        .text(state.selectedMetric); // this updates the yAxis' scale to be our newly updated one
+
+      rScale.domain([0, d3.max(state.data, d => d[state.selectedMetric])]);
       draw(); // re-draw the graph based on this new selection
     });
   
@@ -166,15 +176,7 @@ function draw() {
     filteredData = state.data.filter(d => d["Country or region"] === state.selectedCountry);
   }
 
-xScale.domain([0, d3.max(filteredData, d => d[state.selectedMetric])]);
-d3.select("g.x-axis")
-  .transition()
-  .duration(2000)
-  .call(xAxis.scale(xScale))
-  .select("text.axis-label")
-  .text(state.selectedMetric); // this updates the yAxis' scale to be our newly updated one
 
-rScale.domain([0, d3.max(filteredData, d => d[state.selectedMetric])]);
 
 const dot = svg
    .selectAll("circle")
