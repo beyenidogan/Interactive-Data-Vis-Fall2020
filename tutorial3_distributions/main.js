@@ -66,7 +66,7 @@ const yAxis=d3.axisLeft(yScale)
 
   
 xAxis=d3.axisBottom(xScale)
-//.ticks(5)
+.ticks(10)
 
   // + CREATE SVG ELEMENT
 
@@ -128,7 +128,7 @@ xAxis=d3.axisBottom(xScale)
     .call(xAxis)
     .append("text")
     .attr("class", "axis-label")
-    .attr("x", "57%")
+    .attr("x", "60%")
     .attr("dy", "2.7em")
     //.attr("x", width-margin.right)
     //.attr("y", -6)
@@ -168,9 +168,11 @@ function draw() {
 
 xScale.domain([0, d3.max(filteredData, d => d[state.selectedMetric])]);
 d3.select("g.x-axis")
-.transition()
-.duration(1000)
-.call(xAxis.scale(xScale)); // this updates the yAxis' scale to be our newly updated one
+  .transition()
+  .duration(2000)
+  .call(xAxis.scale(xScale))
+  .select("text.axis-label")
+  .text(state.selectedMetric); // this updates the yAxis' scale to be our newly updated one
 
 rScale.domain([0, d3.max(filteredData, d => d[state.selectedMetric])]);
 
