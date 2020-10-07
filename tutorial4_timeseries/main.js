@@ -34,7 +34,7 @@ let state = {
  * LOAD DATA
  * */
 d3.csv("../data/MedianAskingRent.csv", d => ({
-  year: new Date(d.Year, 0, 1),
+  Month: d.Month,
   area: d.Area,
   borough: d.Borough,
   areaType: d.AreaType,
@@ -53,12 +53,12 @@ function init() {
   // SCALES
   xScale = d3
     .scaleTime()
-    .domain(d3.extent(state.data, d => d.year))
+    .domain(d3.extent(state.data, d => d.Month))
     .range([margin.left, width - margin.right]);
 
   yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(state.data, d => d.population)])
+    .domain([0, d3.max(state.data, d => d.Price)])
     .range([height - margin.bottom, margin.top]);
 
   // AXES
@@ -70,7 +70,7 @@ function init() {
     console.log("new selected entity is", this.value);
     // `this` === the selectElement
     // this.value holds the dropdown value a user just selected
-    state.selectedCountry = this.value;
+    state.selectedBorough = this.value;
     draw(); // re-draw the graph based on this new selection
   });
 
@@ -78,7 +78,7 @@ function init() {
   selectElement
     .selectAll("option")
     .data([
-      ...Array.from(new Set(state.data.map(d => d.country))),
+      ...Array.from(new Set(state.data.map(d => d.Borough))),
       default_selection,
     ])
     .join("option")

@@ -187,7 +187,7 @@ const dot = svg
           .call(enter =>
             enter
               .transition() // initialize transition
-              .delay(d => 100 * d.Score) // delay on each element
+              .delay(d => 500 * d[state.selectedMetric])
               .duration(500) // duration 500ms
           )
 /*               .on("mouseover", function(d,i) {
@@ -241,6 +241,7 @@ const dot = svg
           // update selections -- all data elements that match with a `.dot` element
           update
             .transition()
+            .delay(d => 500 * d[state.selectedMetric])
             .duration(250)
             //.attr("r", d =>2*rScale(d[defaultMetric]))
             .attr("cx", d => xScale(d[state.selectedMetric]))
@@ -256,8 +257,10 @@ const dot = svg
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
-        //    .delay(d => 50 * d.Score)
+    //        .delay(d => 500 * d[state.selectedMetric])
             .duration(50)
+            .attr("cx", d => xScale(d[state.selectedMetric]))
+            .attr("r", d =>((d["Country or region"] === state.selectedCountry)? 2.5 : 1)*rScale(d[state.selectedMetric]))
             //.attr("cx", width)
         //    .attr("r", d =>rScale(d[selectedMetric]))
             .attr("fill-opacity", (d=>(d["Country or region"] === state.selectedCountry)? 0.9 : ((state.selectedCountry === defaultCountry)? 0.5: 0.1)))
