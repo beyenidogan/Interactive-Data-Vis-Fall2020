@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #202227;
-    padding: 1em 8em 2em 8em;
+    padding: 2em 8em 2em 8em;
 
 }
 
@@ -22,6 +22,9 @@ body {
 }
 h1{
   text-align: center;
+  font-size: 40px;
+  margin-block-start: 10px;
+  margin-block-end: 10px;
 }
 p {
   font-size: 13px;
@@ -34,9 +37,12 @@ p {
 img {
   height:20;
   width:auto;
-  margin-left: 25%;
-  margin-right: 25%;
-  width: 50%;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+  
 }
 /* img {
   max-width: 100%;

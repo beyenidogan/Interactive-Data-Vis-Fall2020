@@ -66,49 +66,7 @@ const yAxis=d3.axisLeft(yScale)
 //.ticks(5);
 
 
-  // + UI ELEMENT SETUP
-
-  const selectCountry = d3.select("#dropdown1").on("change", function() {
-    // `this` === the selectCountry
-    // 'this.value' holds the dropdown value a user just selected
-
-    state.selectedCountry = this.value;
-    console.log("new value is", this.value);
-    draw(); // re-draw the graph based on this new selection
-  });
-
-
-  // add in dropdown options from the unique values in the data
-
-  //??????????
-  //sortedCountries=state.data.slice().sort((a,b) => d3.descending(a["Country or region"], b["Country or region"]) )     
-
-  selectCountry
-    .selectAll("option")
-    .data([defaultCountry,
-      ...Array.from(new Set(state.data.map(d => d["Country or region"]))), 
-    ])
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d);
-
-  const selectMetric = d3.select("#dropdown2").on("change", function() {
-      // `this` === the selectCountry
-      // 'this.value' holds the dropdown value a user just selected
   
-      state.selectedMetric = this.value;
-      console.log("new metric is", this.value);
-      draw(); // re-draw the graph based on this new selection
-    });
-  
-  selectMetric
-    .selectAll("option")
-    .data([defaultMetric,
-      ...Array.from(new Set(state.data.columns.slice(4,9))), 
-    ])
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d);
 
   // + CREATE SVG ELEMENT
 
@@ -120,7 +78,7 @@ const yAxis=d3.axisLeft(yScale)
   // + CALL AXES
 
 
-  svg
+  let updatedAxis=svg
   .append("g")
   .attr("class", "x-axis")
   .attr("transform", `translate(0,${height - margin.bottom})`)
@@ -149,6 +107,50 @@ const yAxis=d3.axisLeft(yScale)
   .attr("transform", "rotate(-90)")
   .attr("fill","white")
   .text("Happiness Score");
+
+
+// + UI ELEMENT SETUP
+
+  const selectCountry = d3.select("#dropdown1").on("change", function() {
+    // `this` === the selectCountry
+    // 'this.value' holds the dropdown value a user just selected
+
+    state.selectedCountry = this.value;
+    console.log("new value is", this.value);
+    draw(); // re-draw the graph based on this new selection
+  });
+
+
+  // add in dropdown options from the unique values in the data
+
+  //sortedCountries=state.data.slice().sort((a,b) => d3.descending(a["Country or region"], b["Country or region"]) )     
+
+  selectCountry
+    .selectAll("option")
+    .data([defaultCountry,
+      ...Array.from(new Set(state.data.map(d => d["Country or region"]))), 
+    ])
+    .join("option")
+    .attr("value", d => d)
+    .text(d => d);
+
+  const selectMetric = d3.select("#dropdown2").on("change", function() {
+      // `this` === the selectCountry
+      // 'this.value' holds the dropdown value a user just selected
+  
+      state.selectedMetric = this.value;
+      console.log("new metric is", this.value);
+      draw(); // re-draw the graph based on this new selection
+    });
+  
+  selectMetric
+    .selectAll("option")
+    .data([defaultMetric,
+      ...Array.from(new Set(state.data.columns.slice(4,9))), 
+    ])
+    .join("option")
+    .attr("value", d => d)
+    .text(d => d);
 
   draw(); // calls the draw function
 }
@@ -231,9 +233,9 @@ const dot = svg
             .duration(250)
             //.attr("r", d =>2*rScale(d[defaultMetric]))
             .attr("cx", d => xScale(d[state.selectedMetric]))
-            .attr("fill-opacity", 0.9)
-            .attr("stroke-opacity", 1)
-            .attr("r", d =>2*rScale(d[state.selectedMetric]))
+            .attr("fill-opacity", (d=>(d["Country or region"] === state.selectedCountry)? 0.9 : ((state.selectedCountry === defaultCountry)? 0.5: 0.1)))
+            .attr("stroke-opacity", (d=>(d["Country or region"] === state.selectedCountry)? 1 : 0.7))
+            .attr("r", d =>((d["Country or region"] === state.selectedCountry)? 2.5 : 1)*rScale(d[state.selectedMetric]))
             .transition()
             .duration(250)
             .attr("r", d =>rScale(d[state.selectedMetric]))
@@ -247,8 +249,8 @@ const dot = svg
             .duration(50)
             //.attr("cx", width)
         //    .attr("r", d =>rScale(d[selectedMetric]))
-            .attr("fill-opacity", 0.2)
-            .attr("stroke-opacity", 0.7)
+            .attr("fill-opacity", (d=>(d["Country or region"] === state.selectedCountry)? 0.9 : ((state.selectedCountry === defaultCountry)? 0.5: 0.1)))
+            .attr("stroke-opacity", (d=>(d["Country or region"] === state.selectedCountry)? 1 : 0.7))
         )
    )
 //TRYING TO UPDATE SCALE 
