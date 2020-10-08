@@ -1,6 +1,6 @@
 /* CONSTANTS AND GLOBALS */
 const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.5,
+  height = window.innerHeight * 0.55,
   margin = { top: 30, bottom: 40, left:60, right: 40 },
   radius = 5;
   defaultCountry = "Select Country";
@@ -83,7 +83,7 @@ xAxis=d3.axisBottom(xScale)
  .call(xAxis)
  .append("text")
  .attr("class", "axis-label")
- .attr("x", "60%")
+ .attr("x", "55%")
  .attr("dy", "2.7em")
  //.attr("x", width-margin.right)
  //.attr("y", -6)
