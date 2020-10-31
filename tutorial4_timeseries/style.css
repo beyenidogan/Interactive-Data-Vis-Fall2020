@@ -23,9 +23,7 @@ body {
   
 }
 .wrapper{
-    padding: 2em 2em 2em 2em;
-    margin:2em 2em 2em 2em;
- 
+    padding: 1em 2em 2em 2em;
   }
 
 .centered {
@@ -47,9 +45,9 @@ p {
   color: rgb(210,210,210);
   font-family: 'Ebrima', sans-serif;
 }
-/* .scale{
+.scale{
   align-items: center;
-} */
+} 
 img {
   width:100%;
   height:auto;
