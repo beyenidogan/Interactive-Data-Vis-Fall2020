@@ -27,17 +27,13 @@ body {
   }
 
 .centered {
-    position: relative;
-    left: 50%;
-    width: 100%;
-    font-size: 50px;
+    font-size: 30px;
     /* color: #1E3542; */
-    color: black;
-    padding: 0.25em 1em 0.25em 1em;
+    color: white;
+    padding: 0.25em .25em 0.25em .25em;
     text-align: center;
-    transform: translate(-50%, -50%);
     /* background:rgba(256,256,256,0.4) */
-    background: linear-gradient(to right, rgba(256,256,256,0),rgba(256,256,256,0) 10%, rgba(256,256,256,0.5) 40%, rgba(256,256,256,0.5) 60% , rgba(256,256,256,0) 90%,rgba(256,256,256,0));
+   /*  background: linear-gradient(to right, rgba(256,256,256,0),rgba(256,256,256,0) 10%, rgba(256,256,256,0.5) 40%, rgba(256,256,256,0.5) 60% , rgba(256,256,256,0) 90%,rgba(256,256,256,0)); */
   }
 
 p {
@@ -169,12 +165,12 @@ div.tooltip{
   font-size: 16px;
   
 }
-
-.x-axis{
-  font-size: 10px;
-  
+.y-axis{
+  font-size: 11px; 
 }
-.x-axis2.text{
-  font-size: 13px;
-  color:  #eeeeee;
+.x-axis{
+  font-size: 11px; 
+}
+.x-axis2{
+  font-size: 12px;
 }

@@ -1,128 +1,106 @@
-Area_Type,Area_Name,Borough,Month,Median_Rent
-city,All NYC,All Boroughs,2018-12,
-city,All NYC,All Boroughs,2019-01,2695
-city,All NYC,All Boroughs,2019-02,2700
-city,All NYC,All Boroughs,2019-03,2700
-city,All NYC,All Boroughs,2019-04,2800
-city,All NYC,All Boroughs,2019-05,2850
-city,All NYC,All Boroughs,2019-06,2900
-city,All NYC,All Boroughs,2019-07,2950
-city,All NYC,All Boroughs,2019-08,2950
-city,All NYC,All Boroughs,2019-09,2925
-city,All NYC,All Boroughs,2019-10,2900
-city,All NYC,All Boroughs,2019-11,2899
-city,All NYC,All Boroughs,2019-12,2895
-city,All NYC,All Boroughs,2020-01,2900
-city,All NYC,All Boroughs,2020-02,2900
-city,All NYC,All Boroughs,2020-03,2925
-city,All NYC,All Boroughs,2020-04,2995
-city,All NYC,All Boroughs,2020-05,2950
-city,All NYC,All Boroughs,2020-06,2895
-city,All NYC,All Boroughs,2020-07,2828
-city,All NYC,All Boroughs,2020-08,2750
-city,All NYC,All Boroughs,2020-09,2667
-borough,All Bronx,Bronx,2019-01,1895
-borough,All Bronx,Bronx,2019-02,1850
-borough,All Bronx,Bronx,2019-03,1875
-borough,All Bronx,Bronx,2019-04,1875
-borough,All Bronx,Bronx,2019-05,1895
-borough,All Bronx,Bronx,2019-06,1900
-borough,All Bronx,Bronx,2019-07,1900
-borough,All Bronx,Bronx,2019-08,1950
-borough,All Bronx,Bronx,2019-09,1999
-borough,All Bronx,Bronx,2019-10,1965
-borough,All Bronx,Bronx,2019-11,1930
-borough,All Bronx,Bronx,2019-12,1925
-borough,All Bronx,Bronx,2020-01,1950
-borough,All Bronx,Bronx,2020-02,1950
-borough,All Bronx,Bronx,2020-03,1979
-borough,All Bronx,Bronx,2020-04,2000
-borough,All Bronx,Bronx,2020-05,1969
-borough,All Bronx,Bronx,2020-06,1990
-borough,All Bronx,Bronx,2020-07,2000
-borough,All Bronx,Bronx,2020-08,1990
-borough,All Bronx,Bronx,2020-09,1995
-borough,All Brooklyn,Brooklyn,2019-01,2500
-borough,All Brooklyn,Brooklyn,2019-02,2500
-borough,All Brooklyn,Brooklyn,2019-03,2500
-borough,All Brooklyn,Brooklyn,2019-04,2595
-borough,All Brooklyn,Brooklyn,2019-05,2600
-borough,All Brooklyn,Brooklyn,2019-06,2650
-borough,All Brooklyn,Brooklyn,2019-07,2700
-borough,All Brooklyn,Brooklyn,2019-08,2700
-borough,All Brooklyn,Brooklyn,2019-09,2699
-borough,All Brooklyn,Brooklyn,2019-10,2675
-borough,All Brooklyn,Brooklyn,2019-11,2600
-borough,All Brooklyn,Brooklyn,2019-12,2599
-borough,All Brooklyn,Brooklyn,2020-01,2600
-borough,All Brooklyn,Brooklyn,2020-02,2650
-borough,All Brooklyn,Brooklyn,2020-03,2659
-borough,All Brooklyn,Brooklyn,2020-04,2700
-borough,All Brooklyn,Brooklyn,2020-05,2700
-borough,All Brooklyn,Brooklyn,2020-06,2699
-borough,All Brooklyn,Brooklyn,2020-07,2695
-borough,All Brooklyn,Brooklyn,2020-08,2600
-borough,All Brooklyn,Brooklyn,2020-09,2500
-borough,All Manhattan,Manhattan,2019-01,3275
-borough,All Manhattan,Manhattan,2019-02,3300
-borough,All Manhattan,Manhattan,2019-03,3300
-borough,All Manhattan,Manhattan,2019-04,3400
-borough,All Manhattan,Manhattan,2019-05,3466
-borough,All Manhattan,Manhattan,2019-06,3500
-borough,All Manhattan,Manhattan,2019-07,3500
-borough,All Manhattan,Manhattan,2019-08,3495
-borough,All Manhattan,Manhattan,2019-09,3500
-borough,All Manhattan,Manhattan,2019-10,3500
-borough,All Manhattan,Manhattan,2019-11,3500
-borough,All Manhattan,Manhattan,2019-12,3500
-borough,All Manhattan,Manhattan,2020-01,3500
-borough,All Manhattan,Manhattan,2020-02,3500
-borough,All Manhattan,Manhattan,2020-03,3500
-borough,All Manhattan,Manhattan,2020-04,3475
-borough,All Manhattan,Manhattan,2020-05,3320
-borough,All Manhattan,Manhattan,2020-06,3245
-borough,All Manhattan,Manhattan,2020-07,3138
-borough,All Manhattan,Manhattan,2020-08,3000
-borough,All Manhattan,Manhattan,2020-09,2975
-borough,All Queens,Queens,2019-01,2200
-borough,All Queens,Queens,2019-02,2200
-borough,All Queens,Queens,2019-03,2200
-borough,All Queens,Queens,2019-04,2250
-borough,All Queens,Queens,2019-05,2250
-borough,All Queens,Queens,2019-06,2300
-borough,All Queens,Queens,2019-07,2300
-borough,All Queens,Queens,2019-08,2300
-borough,All Queens,Queens,2019-09,2300
-borough,All Queens,Queens,2019-10,2300
-borough,All Queens,Queens,2019-11,2299
-borough,All Queens,Queens,2019-12,2250
-borough,All Queens,Queens,2020-01,2300
-borough,All Queens,Queens,2020-02,2350
-borough,All Queens,Queens,2020-03,2349
-borough,All Queens,Queens,2020-04,2399
-borough,All Queens,Queens,2020-05,2350
-borough,All Queens,Queens,2020-06,2300
-borough,All Queens,Queens,2020-07,2300
-borough,All Queens,Queens,2020-08,2200
-borough,All Queens,Queens,2020-09,2200
-borough,All Staten Island,Staten Island,2019-01,1856
-borough,All Staten Island,Staten Island,2019-02,1850
-borough,All Staten Island,Staten Island,2019-03,1890
-borough,All Staten Island,Staten Island,2019-04,1875
-borough,All Staten Island,Staten Island,2019-05,2050
-borough,All Staten Island,Staten Island,2019-06,2050
-borough,All Staten Island,Staten Island,2019-07,2000
-borough,All Staten Island,Staten Island,2019-08,2045
-borough,All Staten Island,Staten Island,2019-09,2200
-borough,All Staten Island,Staten Island,2019-10,2200
-borough,All Staten Island,Staten Island,2019-11,2200
-borough,All Staten Island,Staten Island,2019-12,2000
-borough,All Staten Island,Staten Island,2020-01,1952
-borough,All Staten Island,Staten Island,2020-02,1998
-borough,All Staten Island,Staten Island,2020-03,2123
-borough,All Staten Island,Staten Island,2020-04,1831
-borough,All Staten Island,Staten Island,2020-05,1831
-borough,All Staten Island,Staten Island,2020-06,1950
-borough,All Staten Island,Staten Island,2020-07,1863
-borough,All Staten Island,Staten Island,2020-08,1848
-borough,All Staten Island,Staten Island,2020-09,1850
+Borough,Month,Median_Rent
+Bronx,2019-01,1895
+Bronx,2019-02,1850
+Bronx,2019-03,1875
+Bronx,2019-04,1875
+Bronx,2019-05,1895
+Bronx,2019-06,1900
+Bronx,2019-07,1900
+Bronx,2019-08,1950
+Bronx,2019-09,1999
+Bronx,2019-10,1965
+Bronx,2019-11,1930
+Bronx,2019-12,1925
+Bronx,2020-01,1950
+Bronx,2020-02,1950
+Bronx,2020-03,1979
+Bronx,2020-04,2000
+Bronx,2020-05,1969
+Bronx,2020-06,1990
+Bronx,2020-07,2000
+Bronx,2020-08,1990
+Bronx,2020-09,1995
+Brooklyn,2019-01,2500
+Brooklyn,2019-02,2500
+Brooklyn,2019-03,2500
+Brooklyn,2019-04,2595
+Brooklyn,2019-05,2600
+Brooklyn,2019-06,2650
+Brooklyn,2019-07,2700
+Brooklyn,2019-08,2700
+Brooklyn,2019-09,2699
+Brooklyn,2019-10,2675
+Brooklyn,2019-11,2600
+Brooklyn,2019-12,2599
+Brooklyn,2020-01,2600
+Brooklyn,2020-02,2650
+Brooklyn,2020-03,2659
+Brooklyn,2020-04,2700
+Brooklyn,2020-05,2700
+Brooklyn,2020-06,2699
+Brooklyn,2020-07,2695
+Brooklyn,2020-08,2600
+Brooklyn,2020-09,2500
+Manhattan,2019-01,3275
+Manhattan,2019-02,3300
+Manhattan,2019-03,3300
+Manhattan,2019-04,3400
+Manhattan,2019-05,3466
+Manhattan,2019-06,3500
+Manhattan,2019-07,3500
+Manhattan,2019-08,3495
+Manhattan,2019-09,3500
+Manhattan,2019-10,3500
+Manhattan,2019-11,3500
+Manhattan,2019-12,3500
+Manhattan,2020-01,3500
+Manhattan,2020-02,3500
+Manhattan,2020-03,3500
+Manhattan,2020-04,3475
+Manhattan,2020-05,3320
+Manhattan,2020-06,3245
+Manhattan,2020-07,3138
+Manhattan,2020-08,3000
+Manhattan,2020-09,2975
+Queens,2019-01,2200
+Queens,2019-02,2200
+Queens,2019-03,2200
+Queens,2019-04,2250
+Queens,2019-05,2250
+Queens,2019-06,2300
+Queens,2019-07,2300
+Queens,2019-08,2300
+Queens,2019-09,2300
+Queens,2019-10,2300
+Queens,2019-11,2299
+Queens,2019-12,2250
+Queens,2020-01,2300
+Queens,2020-02,2350
+Queens,2020-03,2349
+Queens,2020-04,2399
+Queens,2020-05,2350
+Queens,2020-06,2300
+Queens,2020-07,2300
+Queens,2020-08,2200
+Queens,2020-09,2200
+Staten Island,2019-01,1856
+Staten Island,2019-02,1850
+Staten Island,2019-03,1890
+Staten Island,2019-04,1875
+Staten Island,2019-05,2050
+Staten Island,2019-06,2050
+Staten Island,2019-07,2000
+Staten Island,2019-08,2045
+Staten Island,2019-09,2200
+Staten Island,2019-10,2200
+Staten Island,2019-11,2200
+Staten Island,2019-12,2000
+Staten Island,2020-01,1952
+Staten Island,2020-02,1998
+Staten Island,2020-03,2123
+Staten Island,2020-04,1831
+Staten Island,2020-05,1831
+Staten Island,2020-06,1950
+Staten Island,2020-07,1863
+Staten Island,2020-08,1848
+Staten Island,2020-09,1850

@@ -5,7 +5,7 @@ const width = window.innerWidth * 0.7,
   height = window.innerHeight * 0.7,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
   radius = 3,
-  default_borough = "All Boroughs";
+  default_borough = "Select Borough";
 
 /** these variables allow us to access anything we manipulate in
  * init() but need access to in draw().
@@ -16,6 +16,7 @@ let yScale;
 let xAxis;
 let xAxis2;
 let yAxis;
+let lineFunc;
 
 /* 
 this extrapolated function allows us to replace the "G" with "B" min the case of billions.
@@ -57,20 +58,31 @@ d3.csv("../data/MedianAskingRent.csv", d3.autoType,
  * */
 function init() {
   // SCALES
+
+  let s = new Date("2018-12-01T19:37:55Z");
+  
   xScale = d3
     .scaleTime()
-    .domain(d3.extent(state.data, d => d.Month))
+    .domain([s,d3.max(state.data, d => d.Month)])
     .range([margin.left, width - margin.right])
 
 
   yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(state.data, d => d.Median_Rent)])
+    .domain([0, d3.max(state.data, d => d.Median_Rent)*1.5])
     .range([height - margin.bottom, margin.top]);
 
-  color=d3.scaleLinear()
+  color=d3.scaleOrdinal()
       .domain(d3.extent(state.data, d => d.Borough))
-      .range(["#20425A","#80F4CF","#D68C71","#D1D2D4","#80F4CF"]);
+      .range(["#fafbfc","#fa7fac","#48a6e0","#D68C71","#80F4CF","#c9e048"]);
+  
+  console.log(color("All Boroughs"))
+  console.log(color("Bronx"))
+  console.log(color("Brooklyn"))
+  console.log(color("Manhattan"))
+  console.log(color("Queens"))
+  console.log(color("Staten Island"))
+
 
   // AXES
   xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b")).ticks(13)
@@ -85,6 +97,7 @@ function init() {
     // `this` === the selectElement
     // this.value holds the dropdown value a user just selected
     state.selectedBorough = this.value;
+    
  
     draw(); // re-draw the graph based on this new selection
   });
@@ -93,9 +106,7 @@ function init() {
   // add in dropdown options from the unique values in the data
   selectBorough
     .selectAll("option")
-    .data([
-      ...Array.from(new Set(state.data.map(d => d.Borough))),
-    ])
+    .data(["Select Borough","Bronx","Brooklyn","Manhattan","Queens","Staten Island"])
     .join("option")
     .attr("value", d => d)
     .text(d => d);
@@ -127,7 +138,6 @@ function init() {
     .call(xAxis2)
     .selectAll(".tick text")
     .attr("class", "years")
-    .attr("fill","grey")
     .attr("dy", "2em")
     .attr("dx", "0.5em")
     
@@ -142,7 +152,7 @@ function init() {
     .append("text")
     .attr("class", "axis-label")
     .attr("y", "-40%")
-    .attr("fill","white")
+    .attr("fill","#eeeeee")
     .attr("dx", "4em")
     .attr("transform", "rotate(-180)")
     .attr("writing-mode", "vertical-rl")
@@ -157,17 +167,27 @@ function init() {
  * */
 function draw() {
   // filter the data for the selectedParty
-  let filteredData= []
+  let filteredData = state.data;
 
   if (state.selectedBorough !== "All Boroughs" ) {
     filteredData= state.data.filter(d => d.Borough === state.selectedBorough);
   } 
+  
+/*   let byBorough=d3.nest()
+  .key(d=>d.Borough)
+  .entries(filteredData)
 
+  console.log(byBorough) */
+
+  let highlight = function(d) {
+    if (d !== "All Boroughs"){return 1} else {return 2}
+  }
+  console.log(highlight("All Boroughs"))
 
   console.log(filteredData)
   
   // update the scale domain (now that our data has changed)
-  yScale.domain([0, d3.max(state.data, d => d.Median_Rent)]);
+  yScale.domain([0, d3.max(filteredData, d => d.Median_Rent)]);
 
   // re-draw our yAxix since our yScale is updated with the new data
   d3.select("g.y-axis")
@@ -176,24 +196,26 @@ function draw() {
     .call(yAxis.scale(yScale)); // this updates the yAxis' scale to be our newly updated one
 
   // we define our line function generator telling it how to access the x,y values for each point
-  const lineFunc = d3
+  lineFunc = d3
     .line()
     .x(d => xScale(d.Month))
     .y(d => yScale(d.Median_Rent));
 
    const dot = svg
     .selectAll(".dot")
-    .data(filteredData, d => d.Month) // use `d.year` as the `key` to match between HTML and data elements
+    .data(filteredData, d => "${d.Borough}_${d.Month}") // use `d.year` as the `key` to match between HTML and data elements
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
         enter
           .append("circle")
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
-          .attr("r", radius)
-          .attr("cy", height - margin.bottom) // initial value - to be transitioned
+          .attr("r", d=>radius)
+          .attr("cy", d => yScale(d.Median_Rent)) // initial value - to be transitioned
           .attr("fill", d => color(d.Borough))
+          .attr("fill-opacity", 0.8)
           .attr("stroke", d => color(d.Borough))
+          .attr("opacity", 0)
           .attr("cx", d => xScale(d.Month),
       update => update,
       exit =>
@@ -201,9 +223,7 @@ function draw() {
           // exit selections -- all the `.dot` element that no longer match to HTML elements
           exit
             .transition()
-            .delay(d => d.Month)
             .duration(500)
-            .attr("cy", height - margin.bottom)
             .remove()
         )
     )
@@ -215,10 +235,12 @@ function draw() {
           .transition() // initialize transition
           .duration(1000) // duration 1000ms / 1s
           .attr("cy", d => yScale(d.Median_Rent))) // started from the bottom, now we're here
+          .attr("opacity", 1) 
     );
  
   const line = svg
     .selectAll("path.trend")
+   // .data([filteredData])
     .data([filteredData])
     .join(
       enter =>
@@ -226,8 +248,9 @@ function draw() {
           .append("path")
           .attr("class", "trend")
           .attr("fill", "none")
-    //      .attr("stroke", d => color(d.Borough))
-   //       .attr("stroke-width", 1.5)
+          .attr("stroke", "White")
+          .attr("stroke-width", 2)
+          .style("stroke-dasharray", ("1, 1")) 
           .attr("opacity", 0), // start them off as opacity 0 and fade them in
       update => update, // pass through the update selection
       exit => exit.remove()
@@ -236,6 +259,7 @@ function draw() {
       selection
         .transition() // sets the transition on the 'Enter' + 'Update' selections together.
         .duration(1000)
+        //.ease("linear")
         .attr("opacity", 1)
         .attr("d", d => lineFunc(d))
     );
