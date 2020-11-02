@@ -13,13 +13,11 @@
         </div>
           <div id="container">
             <div class="wrapper">      
-              <p id="text2" class="main">As NYC rentals reached the highest vacancy rate <a href="https://www.nytimes.com/2020/09/03/realestate/no-fee-apartments-new-york-city-coronavirus.html">in the recent years</a> 
-                and significant decrease in fees and rental prices due to pandemic, maybe it is not a bad idea to consider a change.
+              <p id="text2" class="main">As NYC rentals reached the highest vacancy rate <a href="https://www.nytimes.com/2020/09/03/realestate/no-fee-apartments-new-york-city-coronavirus.html">in the recent years according to New York Times</a> 
+                and significant decrease in fees and rental prices due to pandemic.
                 Below is the summary of median rental prices in NYC by borough in the last two years, as listed in 
-                <a href="https://streeteasy.com/blog/data-dashboard/">StreetEasy.</a> 
-                </p>
-                  
-                
+                <a href="https://streeteasy.com/blog/data-dashboard/">StreetEasy.</a> Median rental prices in Manhattan has the biggest drop.
+                </p>                             
                   <div class="line"></div>
                   
                   <br>
@@ -27,8 +25,12 @@
                   <select id="dropdown1" name="country_dropdown"></select>
                   <div id="d3-container"> </div>
                   <div id="tooltip" class="hidden">
-                    <h2><strong></strong><span id="tooltipheader">Country</strong></h2>
-                    <p>Happiness Score: <span id="value">100</span></p>
+                    <h2><strong></strong><span id="tooltipheader">Borough</strong></h2>
+                    <p1>Month: <span id="month"></span></p1>
+                    <br>
+                    <p2>Median Rent: $<span id="value"></span></p2>
+                    <br>
+                    <p3><span id="annotation"></span></p3>
                   </div> 
             </div>
           </div>

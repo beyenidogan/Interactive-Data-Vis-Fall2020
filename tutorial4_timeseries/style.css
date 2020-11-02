@@ -30,7 +30,7 @@ body {
     font-size: 30px;
     /* color: #1E3542; */
     color: white;
-    padding: 0.25em .25em 0.25em .25em;
+
     text-align: center;
     /* background:rgba(256,256,256,0.4) */
    /*  background: linear-gradient(to right, rgba(256,256,256,0),rgba(256,256,256,0) 10%, rgba(256,256,256,0.5) 40%, rgba(256,256,256,0.5) 60% , rgba(256,256,256,0) 90%,rgba(256,256,256,0)); */
@@ -164,6 +164,12 @@ div.tooltip{
   margin: 0;
   font-size: 16px;
   
+}
+#annotation{
+  margin: 0;
+  font-size: 13px;
+  font-style: oblique;
+  color:  #f57d51;
 }
 .y-axis{
   font-size: 11px; 

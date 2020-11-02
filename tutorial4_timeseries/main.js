@@ -2,9 +2,9 @@
  * CONSTANTS AND GLOBALS
  * */
 const width = window.innerWidth * 0.7,
-  height = window.innerHeight * 0.7,
+  height = window.innerHeight * 0.65,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
-  radius = 3,
+  radius = 4,
   default_borough = "Select Borough";
 
 /** these variables allow us to access anything we manipulate in
@@ -17,6 +17,7 @@ let xAxis;
 let xAxis2;
 let yAxis;
 let lineFunc;
+let areaFunc;
 
 /* 
 this extrapolated function allows us to replace the "G" with "B" min the case of billions.
@@ -30,11 +31,11 @@ and replace needs to act on the text (result of the function).
  * */
 let state = {
   data: [],
-  agg_data:[],
+  all_city:[],
   selectedBorough: null,
 };
 
-let color = d3.scaleOrdinal(d3.schemeCategory10);
+
 /**
  * LOAD DATA
  * */
@@ -47,7 +48,9 @@ d3.csv("../data/MedianAskingRent.csv", d3.autoType,
  // d3.timeFormat("%Y-%m")(raw_data.Month);
   console.log("raw_data", raw_data);
   state.data = raw_data;
-  console.log(state.data)
+  state.all_city=raw_data.filter(d => d.Borough === "All NYC");
+  console.log("state.data",state.data)
+  console.log("nyc",state.all_city)
   init();
 });
 
@@ -60,19 +63,20 @@ function init() {
   // SCALES
 
   let s = new Date("2018-12-01T19:37:55Z");
-  
+
   xScale = d3
     .scaleTime()
     .domain([s,d3.max(state.data, d => d.Month)])
+    //.domain(d3.extent(state.data, d => d.Month))
     .range([margin.left, width - margin.right])
 
 
   yScale = d3
     .scaleLinear()
-    .domain([0, d3.max(state.data, d => d.Median_Rent)*1.5])
+    .domain([0, d3.max(state.data, d => d.Median_Rent)*1.2])
     .range([height - margin.bottom, margin.top]);
 
-  color=d3.scaleOrdinal()
+/*   color=d3.scaleOrdinal()
       .domain(d3.extent(state.data, d => d.Borough))
       .range(["#fafbfc","#fa7fac","#48a6e0","#D68C71","#80F4CF","#c9e048"]);
   
@@ -81,12 +85,12 @@ function init() {
   console.log(color("Brooklyn"))
   console.log(color("Manhattan"))
   console.log(color("Queens"))
-  console.log(color("Staten Island"))
+  console.log(color("Staten Island")) */
 
 
   // AXES
   xAxis = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%b")).ticks(13)
-  xAxis2 = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")).ticks(2)
+  xAxis2 = d3.axisBottom(xScale).tickFormat(d3.timeFormat("%Y")).ticks(3)
   yAxis = d3.axisLeft(yScale).tickFormat(d => "$" +d);
   
   // UI ELEMENT SETUP
@@ -187,36 +191,156 @@ function draw() {
   console.log(filteredData)
   
   // update the scale domain (now that our data has changed)
-  yScale.domain([0, d3.max(filteredData, d => d.Median_Rent)]);
+  //yScale.domain([0, d3.max(filteredData, d => d.Median_Rent)*2]);
+  
 
-  // re-draw our yAxix since our yScale is updated with the new data
+/*   // re-draw our yAxix since our yScale is updated with the new data
   d3.select("g.y-axis")
     .transition()
     .duration(1000)
-    .call(yAxis.scale(yScale)); // this updates the yAxis' scale to be our newly updated one
+    .call(yAxis.scale(yScale)); // this updates the yAxis' scale to be our newly updated one */
+
+
 
   // we define our line function generator telling it how to access the x,y values for each point
   lineFunc = d3
     .line()
     .x(d => xScale(d.Month))
     .y(d => yScale(d.Median_Rent));
+  
+  function y() {
+      return height - margin.bottom;
+    }  
+  areaFunc = d3.area()
+    .x(d => xScale(d.Month))
+    .y1(d => yScale(d.Median_Rent))
+    .y0(y(0))
 
-   const dot = svg
+  const line = svg
+    .selectAll("path.trend")
+    
+    line.data([state.all_city])
+    .join(
+      enter =>
+        enter
+          .append("path")
+          .attr("class", "trend2")
+          .attr("fill", "white")
+          .attr("fill-opacity",0.1)
+          .attr("stroke", "White")
+          .attr("stroke-width", 0.5)
+         // .style("stroke-dasharray", ("1, 1")) 
+          .attr("opacity", 0), // start them off as opacity 0 and fade them in
+      update => update, // pass through the update selection
+      exit => exit.remove()
+    )
+    .call(selection =>
+      selection
+        .transition() // sets the transition on the 'Enter' + 'Update' selections together.
+        .duration(1000)
+        //.ease("linear")
+        .attr("opacity", 1)
+        .attr("d", d => areaFunc(d))
+    ); 
+  
+  const dot = svg
     .selectAll(".dot")
-    .data(filteredData, d => "${d.Borough}_${d.Month}") // use `d.year` as the `key` to match between HTML and data elements
+
+  dot.data(state.all_city,d => "${d.Borough}_${d.Month}") // use `d.year` as the `key` to match between HTML and data elements
+    .join(
+      enter =>
+        // enter selections -- all data elements that don't have a `.dot` element attached to them yet
+        enter
+          .append("circle")
+          .attr("class", "dot2") // Note: this is important so we can identify it in future updates
+          .attr("r", radius*0.75)
+          .attr("cy", d => yScale(d.Median_Rent)) // initial value - to be transitioned
+          .attr("fill", "#DDDDDD")
+          .attr("fill-opacity", 0.5)
+          .attr("cx", d => xScale(d.Month))
+          .on("mouseover", function(d) {                                                            
+            //Get this bar's x/y values, then augment for the tooltip
+            xPosition = d3.event.pageX -100;
+            yPosition = d3.event.pageY - 20;
+            console.log(d3.event.pageX, d3.event.pageY)
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")						
+                    .select("#value")
+                    .text(d.Median_Rent)
+                    .style("fill", "white")
+            d3.select("#tooltip")       
+                    .select("#month")
+                    .text(d3.timeFormat("%B-%Y")(d.Month))
+                    .style("fill", "white")
+            d3.select("#tooltip")       
+                    .select("#tooltipheader")
+                    .text(d.Borough)
+                    .style("fill", "white")
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+            })  
+           .on("mouseleave", function(d) {
+              d3.select("#tooltip").classed("hidden", true);
+            })  
+          ,
+      update => update,
+      exit =>
+        exit.call(exit =>
+          // exit selections -- all the `.dot` element that no longer match to HTML elements
+          exit
+            .transition()
+            .duration(500)
+            .remove()
+        )
+    ) 
+
+    dot.data(filteredData, d => "${d.Borough}_${d.Month}") // use `d.year` as the `key` to match between HTML and data elements
     .join(
       enter =>
         // enter selections -- all data elements that don't have a `.dot` element attached to them yet
         enter
           .append("circle")
           .attr("class", "dot") // Note: this is important so we can identify it in future updates
-          .attr("r", d=>radius)
+          .attr("r", radius)
           .attr("cy", d => yScale(d.Median_Rent)) // initial value - to be transitioned
-          .attr("fill", d => color(d.Borough))
+          .attr("fill", "#80F4CF")
           .attr("fill-opacity", 0.8)
-          .attr("stroke", d => color(d.Borough))
+ //         .attr("stroke", d => color(d.Borough))
           .attr("opacity", 0)
-          .attr("cx", d => xScale(d.Month),
+          .attr("cx", d => xScale(d.Month))
+          .on("mouseover", function(d) {                                                            
+            //Get this bar's x/y values, then augment for the tooltip
+            xPosition = d3.event.pageX -100;
+            yPosition = d3.event.pageY - 20;
+            console.log(d3.event.pageX, d3.event.pageY)
+            //Update the tooltip position and value
+            d3.select("#tooltip")
+                    .style("left", xPosition + "px")
+                    .style("top", yPosition + "px")						
+                    .select("#value")
+                    .text(d.Median_Rent)
+                    .style("fill", "white")
+            d3.select("#tooltip")       
+                    .select("#month")
+                    .text(d3.timeFormat("%B-%Y")(d.Month))
+                    .style("fill", "white")
+            d3.select("#tooltip")       
+                    .select("#tooltipheader")
+                    .text(d.Borough)
+                    .style("fill", "white")
+            d3.select("#tooltip")       
+                    .select("#annotation")
+                    .text((d.Borough === "Manhattan")? "Note that Manhattan had the biggest drop with %15 between January and September of 2020":"" )
+                    .style("fill", "white")
+            //Show the tooltip
+            d3.select("#tooltip").classed("hidden", false);
+            })  
+           .on("mouseleave", function(d) {
+              d3.select("#tooltip").classed("hidden", true);
+            })   
+          ,
       update => update,
       exit =>
         exit.call(exit =>
@@ -234,23 +358,24 @@ function draw() {
         selection
           .transition() // initialize transition
           .duration(1000) // duration 1000ms / 1s
-          .attr("cy", d => yScale(d.Median_Rent))) // started from the bottom, now we're here
+          .attr("cy", d => yScale(d.Median_Rent)) // started from the bottom, now we're here
           .attr("opacity", 1) 
     );
  
-  const line = svg
-    .selectAll("path.trend")
-   // .data([filteredData])
+  
+
+  line 
     .data([filteredData])
     .join(
       enter =>
         enter
           .append("path")
           .attr("class", "trend")
-          .attr("fill", "none")
+          .attr("fill", "white")
+          .attr("fill-opacity",0.2)
           .attr("stroke", "White")
-          .attr("stroke-width", 2)
-          .style("stroke-dasharray", ("1, 1")) 
+          .attr("stroke-width", 0.5)
+         // .style("stroke-dasharray", ("1, 1")) 
           .attr("opacity", 0), // start them off as opacity 0 and fade them in
       update => update, // pass through the update selection
       exit => exit.remove()
@@ -261,6 +386,6 @@ function draw() {
         .duration(1000)
         //.ease("linear")
         .attr("opacity", 1)
-        .attr("d", d => lineFunc(d))
+        .attr("d", d => areaFunc(d))
     );
 }
