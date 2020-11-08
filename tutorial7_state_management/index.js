@@ -13,7 +13,7 @@ let state = {
   selectedMetric: null,
 };
 
-d3.csv("../../data/statePopulations.csv", d3.autoType).then(data => {
+d3.csv("../data/statePopulations.csv", d3.autoType).then(data => {
   console.log("data", data);
   state.data = data;
   state.domain = [
@@ -22,6 +22,7 @@ d3.csv("../../data/statePopulations.csv", d3.autoType).then(data => {
       .map(d => [d["Age < 20"], d["Age 20-65"], d["Age 65+"]])
       .flat()
     )]
+    console.log("flat",state.domain)
   init();
 });
 
