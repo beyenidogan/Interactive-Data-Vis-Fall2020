@@ -141,6 +141,7 @@ div.tooltip{
   height: auto;
   padding: 10px;
   color:white;
+  max-width     : 280px;
   background-color: rgba(32, 34, 39,0.8);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
